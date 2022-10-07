@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".featureModules.onBoardingModule.activities.LoginActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username"
+            android:drawableStart="@drawable/ic_username"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@drawable/round_corners"
+            android:layout_marginHorizontal="20dp"
+            android:textSize="20sp"
+            android:padding="15dp"
+            android:drawablePadding="5dp"/>
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:layout_marginTop="20dp"
+            android:drawableStart="@drawable/ic_email"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@drawable/round_corners"
+            android:layout_marginHorizontal="20dp"
+            android:textSize="20sp"
+            android:padding="15dp"
+            android:drawablePadding="5dp"/>
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:drawableStart="@drawable/ic_password"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@drawable/round_corners"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="20dp"
+            android:textSize="20sp"
+            android:padding="15dp"
+            android:drawablePadding="5dp"/>
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:text="Sign Up"
+            android:backgroundTint="@color/black"
+            android:textSize="15sp"
+            android:background="@drawable/button_background"
+            android:textColor="@color/white"
+            android:layout_marginTop="20dp"/>
+
+
+
+
+
+
+
+
+    </LinearLayout>
+
+</layout>
