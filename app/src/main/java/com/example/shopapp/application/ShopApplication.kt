@@ -14,4 +14,5 @@ class ShopApplication: Application() {
         super.onCreate()
         applicationComponent = DaggerAppComponent.builder().appModule(AppModule(this)).build()
     }
+    fun applicationComponent() = applicationComponent
 }
