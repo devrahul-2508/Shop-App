@@ -3,6 +3,7 @@ package com.example.shopapp.featureModules.authModule.ui.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.shopapp.MainActivity
@@ -26,6 +27,7 @@ class LoginActivity : AppCompatActivity() {
 
         DaggerAuthComponent.builder().appComponent((application as ShopApplication).applicationComponent()).build().also {
             it.inject(this)
+            it.inject(authViewModel)
         }
 
         with(binding){
@@ -35,14 +37,17 @@ class LoginActivity : AppCompatActivity() {
         }
     }
     private fun loginUser(){
-        val email = binding.email.text.toString()
+        val username = binding.email.text.toString()
         val password = binding.password.text.toString()
 
-        val userModel = UserModel(email,password)
+        val userModel = UserModel(userName = username, password = password)
 
         authViewModel.loginUser(userModel).observe(this){
             if (it!=null){
                 startActivity(Intent(this,MainActivity::class.java))
+            }
+            else{
+                Toast.makeText(this,"Problem",Toast.LENGTH_SHORT).show()
             }
         }
 

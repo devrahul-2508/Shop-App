@@ -9,10 +9,10 @@ import retrofit2.http.Query
 
 interface AuthRestApi {
 
-    @POST("")
+    @POST("/api/auth/login")
     fun login(@Body userModel: UserModel): Call<UserModel>
 
-    @POST("")
+    /*@POST("")
     fun register(@Body userModel: UserModel): Call<UserModel>
 
     @GET("")
@@ -21,5 +21,5 @@ interface AuthRestApi {
     ): Call<UserModel>
 
     @GET("")
-    fun getAllUsers(): Call<List<UserModel>>
+    fun getAllUsers(): Call<List<UserModel>>*/
 }

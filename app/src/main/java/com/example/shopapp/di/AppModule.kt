@@ -38,7 +38,7 @@ class AppModule(val context: Application) {
     @Named(Constants.Retrofit.WITH_HEADERS)
     fun providesRetrofitWithHeaders(client : OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("httpsfrreg")
+            .baseUrl(Constants.BASE_URL)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -49,7 +49,7 @@ class AppModule(val context: Application) {
     @Named(Constants.Retrofit.WITHOUT_HEADERS)
     fun providesRetrofitWithoutHeaders(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("httpsfrreg")
+            .baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
