@@ -3,6 +3,7 @@ package com.example.shopapp.featureModules.authModule.ui.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -37,17 +38,18 @@ class LoginActivity : AppCompatActivity() {
         }
     }
     private fun loginUser(){
-        val username = binding.email.text.toString()
+        val email = binding.email.text.toString()
         val password = binding.password.text.toString()
 
-        val userModel = UserModel(userName = username, password = password)
+        val userModel = UserModel(email = email, password = password)
 
         authViewModel.loginUser(userModel).observe(this){
-            if (it!=null){
+
+            if (it.success!!){
                 startActivity(Intent(this,MainActivity::class.java))
             }
             else{
-                Toast.makeText(this,"Problem",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,it.message,Toast.LENGTH_SHORT).show()
             }
         }
 
