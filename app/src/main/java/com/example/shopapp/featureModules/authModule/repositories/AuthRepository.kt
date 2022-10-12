@@ -20,7 +20,8 @@ class AuthRepository(
         aRestApi.login(userModel).enqueue(object : Callback<UserModel>{
 
             override fun onResponse(call: Call<UserModel>, response: Response<UserModel>) {
-                Log.d("BAM","Login Hiited")
+                Log.d("BAM",response.toString())
+
                 if (response.body()!=null){
                     data.value = response.body()
                     Log.d("BAM",response.body().toString())

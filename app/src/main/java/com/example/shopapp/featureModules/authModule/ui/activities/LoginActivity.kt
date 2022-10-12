@@ -37,10 +37,10 @@ class LoginActivity : AppCompatActivity() {
         }
     }
     private fun loginUser(){
-        val username = binding.email.text.toString()
+        val email = binding.email.text.toString()
         val password = binding.password.text.toString()
 
-        val userModel = UserModel(userName = username, password = password)
+        val userModel = UserModel(email = email, password = password)
 
         authViewModel.loginUser(userModel).observe(this){
             if (it!=null){
