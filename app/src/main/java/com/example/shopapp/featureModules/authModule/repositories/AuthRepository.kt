@@ -22,7 +22,8 @@ class AuthRepository(
 
             override fun onResponse(call: Call<ApiResponseUserModel>, response: Response<ApiResponseUserModel>) {
 
-                if (response.body()!=null){
+
+               if (response.body()!=null){
                     data.value = response.body()
                 }
                 else{
