@@ -1,6 +1,7 @@
 package com.example.shopapp.featureModules.authModule.models.apiResponseModels
 
 import com.example.shopapp.featureModules.authModule.models.UserAuthModel
+import com.example.shopapp.featureModules.authModule.models.UserModel
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
@@ -17,5 +18,5 @@ data class ApiResponseUserModel(
     val message:String?=null,
     @SerializedName("response")
     @Expose
-    val response: UserAuthModel?=null
+    val response: UserModel?=null
 ): Serializable

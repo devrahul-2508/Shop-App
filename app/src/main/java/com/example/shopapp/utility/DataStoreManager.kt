@@ -1,16 +1,21 @@
 package com.example.shopapp.utility
 
 import android.content.Context
+import android.util.Log
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-private val Context.dataStore by preferencesDataStore("shop_app_preferences")
 
 
-class DataStoreManager(private val context: Context) {
+class DataStoreManager(val context: Context) {
+
+    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore("shop_app_preferences")
+
 
     private val dataStore = context.dataStore
 
@@ -20,7 +25,7 @@ class DataStoreManager(private val context: Context) {
 
     }
 
-    val accessToken: Flow<String> = context.dataStore.data
+    val accessToken: Flow<String> = dataStore.data
         .map { preferences ->
             // No type safety.
             preferences[ACCESS_TOKEN] ?: ""
