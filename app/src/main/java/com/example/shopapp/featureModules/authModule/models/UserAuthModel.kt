@@ -4,7 +4,7 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-data class UserModel(
+data class UserAuthModel(
     @SerializedName("_id")
     @Expose
     val id: String?=null,
@@ -14,9 +14,6 @@ data class UserModel(
     @SerializedName("email")
     @Expose
     val email: String?=null,
-    @SerializedName("password")
-    @Expose
-    val password:String?=null,
     @SerializedName("isAdmin")
     @Expose
     val isAdmin: Boolean?=false,
@@ -29,4 +26,4 @@ data class UserModel(
     @SerializedName("updatedAt")
     @Expose
     val updatedAt: String?=null
-):Serializable
+): Serializable

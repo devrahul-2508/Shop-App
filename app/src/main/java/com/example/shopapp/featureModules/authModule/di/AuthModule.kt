@@ -25,7 +25,7 @@ class AuthModule {
     @Provides
     @ApplicationScope
     fun providesAuthRepository(
-       @Named(Constants.REST_API_WITH_HEADERS) authRestApi: AuthRestApi
+       @Named(Constants.REST_API_WITHOUT_HEADERS) authRestApi: AuthRestApi
     ):AuthRepository = AuthRepository(authRestApi)
 
 }

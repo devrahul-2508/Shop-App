@@ -28,6 +28,8 @@
         android:layout_height="wrap_content"
         app:menu="@menu/bottom_menu"
         android:background="#ffff"
+        app:itemIconTint="@color/icon_colour"
+        app:itemTextColor="@color/icon_colour"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
