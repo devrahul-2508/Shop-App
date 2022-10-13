@@ -50,6 +50,10 @@ class LoginActivity : AppCompatActivity() {
             btnLogin.setOnClickListener {
                 loginUser()
             }
+            btnSignUpSuggestion.setOnClickListener {
+                startActivity(Intent(this@LoginActivity,SignUpActivity::class.java))
+
+            }
         }
     }
     private fun loginUser(){

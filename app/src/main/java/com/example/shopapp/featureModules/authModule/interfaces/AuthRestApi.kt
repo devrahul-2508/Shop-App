@@ -13,8 +13,10 @@ interface AuthRestApi {
     @POST("/api/auth/login")
     fun login(@Body userModel: UserModel): Call<ApiResponseUserModel>
 
-    /*@POST("")
-    fun register(@Body userModel: UserModel): Call<UserModel>
+    @POST("/api/auth/register")
+    fun register(@Body userModel: UserModel): Call<ApiResponseUserModel>
+
+    /*
 
     @GET("")
     fun getUser(

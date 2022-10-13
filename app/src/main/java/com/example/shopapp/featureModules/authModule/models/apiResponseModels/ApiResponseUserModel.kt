@@ -9,10 +9,10 @@ import java.io.Serializable
 data class ApiResponseUserModel(
     @SerializedName("success")
     @Expose
-    val success: Boolean?=null,
+    val success: Boolean,
     @SerializedName("code")
     @Expose
-    val code: Int?=null,
+    val code: Int,
     @SerializedName("message")
     @Expose
     val message:String?=null,

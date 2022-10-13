@@ -49,6 +49,14 @@
             android:textColor="@color/white"
             android:layout_marginTop="20dp"/>
 
+        <TextView
+            android:id="@+id/btnSignUpSuggestion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dont have a account sign up"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"/>
+
 
 
 

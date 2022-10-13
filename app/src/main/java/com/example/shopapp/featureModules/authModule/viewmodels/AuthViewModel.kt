@@ -21,4 +21,10 @@ class AuthViewModel: ViewModel() {
         authRepository.loginUser(userModel,successData, errorData)
         return successData
     }
+
+    fun registerUser(userModel: UserModel): LiveData<ApiResponseUserModel>{
+        val successData : MutableLiveData<ApiResponseUserModel> = MutableLiveData()
+        authRepository.registerUser(userModel,successData, errorData)
+        return successData
+    }
 }
