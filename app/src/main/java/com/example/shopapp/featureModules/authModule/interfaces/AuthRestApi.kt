@@ -1,6 +1,7 @@
 package com.example.shopapp.featureModules.authModule.interfaces
 
 import com.example.shopapp.featureModules.authModule.models.UserModel
+import com.example.shopapp.featureModules.authModule.models.apiResponseModels.ApiResponseUserModel
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -9,10 +10,10 @@ import retrofit2.http.Query
 
 interface AuthRestApi {
 
-    @POST("")
-    fun login(@Body userModel: UserModel): Call<UserModel>
+    @POST("/api/auth/login")
+    fun login(@Body userModel: UserModel): Call<ApiResponseUserModel>
 
-    @POST("")
+    /*@POST("")
     fun register(@Body userModel: UserModel): Call<UserModel>
 
     @GET("")
@@ -21,5 +22,5 @@ interface AuthRestApi {
     ): Call<UserModel>
 
     @GET("")
-    fun getAllUsers(): Call<List<UserModel>>
+    fun getAllUsers(): Call<List<UserModel>>*/
 }

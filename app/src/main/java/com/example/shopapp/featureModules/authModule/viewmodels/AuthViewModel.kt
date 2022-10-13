@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.shopapp.featureModules.authModule.models.UserModel
+import com.example.shopapp.featureModules.authModule.models.apiResponseModels.ApiResponseUserModel
 import com.example.shopapp.featureModules.authModule.repositories.AuthRepository
 import javax.inject.Inject
 
@@ -15,8 +16,8 @@ class AuthViewModel: ViewModel() {
 
     private val errorData = MutableLiveData<Throwable>()
 
-    fun loginUser(userModel: UserModel): LiveData<UserModel>{
-        val successData : MutableLiveData<UserModel> = MutableLiveData()
+    fun loginUser(userModel: UserModel): LiveData<ApiResponseUserModel>{
+        val successData : MutableLiveData<ApiResponseUserModel> = MutableLiveData()
         authRepository.loginUser(userModel,successData, errorData)
         return successData
     }
