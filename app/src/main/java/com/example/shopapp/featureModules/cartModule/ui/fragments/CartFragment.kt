@@ -1,4 +1,4 @@
-package com.example.shopapp.featureModules.cartModule.ui
+package com.example.shopapp.featureModules.cartModule.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
