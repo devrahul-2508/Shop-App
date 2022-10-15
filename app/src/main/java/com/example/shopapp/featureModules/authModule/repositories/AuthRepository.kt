@@ -38,4 +38,30 @@ class AuthRepository(
 
         })
     }
+
+    fun registerUser(
+        userModel: UserModel,
+        data: MutableLiveData<ApiResponseUserModel>,
+        error: MutableLiveData<Throwable>
+    ){
+        aRestApi.register(userModel).enqueue(object : Callback<ApiResponseUserModel>{
+
+            override fun onResponse(call: Call<ApiResponseUserModel>, response: Response<ApiResponseUserModel>) {
+
+
+                if (response.body()!=null){
+                    data.value = response.body()
+                }
+                else{
+                    error.value = null
+                }
+            }
+
+            override fun onFailure(call: Call<ApiResponseUserModel>, t: Throwable) {
+                error.value = t
+
+            }
+
+        })
+    }
 }
