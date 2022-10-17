@@ -15,4 +15,8 @@ object Constants {
     const val REST_API_WITHOUT_HEADERS = "RestApiWithoutHeaders"
     const val BASE_URL="http://192.168.29.89:3000"
 
+    object INTENT_PARAMS{
+        const val PRODUCT_ID = "productid"
+    }
+
 }
