@@ -13,6 +13,9 @@ data class CartProductModel(
     @SerializedName("title")
     @Expose
     var title: String?,
+    @SerializedName("desc")
+    @Expose
+    var description: String?,
     @SerializedName("img")
     @Expose
     var img: String?,
@@ -23,4 +26,4 @@ data class CartProductModel(
     @Expose
     var quantity: Int?,
 
-): java.io.Serializable
+    ) : java.io.Serializable

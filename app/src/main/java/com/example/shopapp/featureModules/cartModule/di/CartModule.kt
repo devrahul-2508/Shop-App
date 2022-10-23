@@ -15,15 +15,15 @@ class CartModule {
     @Provides
     @ApplicationScope
     @Named(Constants.REST_API_WITH_HEADERS)
-    fun provideCartRestApiWithoutHeaders(
-        @Named(Constants.Retrofit.WITHOUT_HEADERS) retrofit: Retrofit
+    fun provideCartRestApiWithHeaders(
+        @Named(Constants.Retrofit.WITH_HEADERS) retrofit: Retrofit
     ):CartRestApi = retrofit.create(CartRestApi::class.java)
 
     @Provides
     @ApplicationScope
     @Named(Constants.REST_API_WITHOUT_HEADERS)
-    fun provideCartRestApiWithHeaders(
-        @Named(Constants.Retrofit.WITH_HEADERS) retrofit: Retrofit
+    fun provideCartRestApiWithoutHeaders(
+        @Named(Constants.Retrofit.WITHOUT_HEADERS) retrofit: Retrofit
     ): CartRestApi  = retrofit.create(CartRestApi::class.java)
 
     @Provides

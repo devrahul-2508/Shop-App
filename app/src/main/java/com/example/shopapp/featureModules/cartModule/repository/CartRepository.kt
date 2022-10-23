@@ -1,5 +1,6 @@
 package com.example.shopapp.featureModules.cartModule.repository
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.shopapp.featureModules.cartModule.interfaces.CartRestApi
 import com.example.shopapp.featureModules.cartModule.models.apiResponseModels.ApiResponseCartModel
@@ -21,6 +22,7 @@ class CartRepository(
             ) {
                 if (response.body()!=null){
                     data.value = response.body()
+                    Log.d("BAM",response.toString())
                 }
                 else{
                     error.value = null
