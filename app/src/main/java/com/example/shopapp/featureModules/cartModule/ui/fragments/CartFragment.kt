@@ -48,12 +48,17 @@ class CartFragment : Fragment() {
         cartViewModel.getCart().observe(requireActivity()){
             if (it.success){
                 if (it.response!=null){
+                    binding.productRecycler.visibility = View.VISIBLE
+                    binding.cartEmpty.visibility = View.GONE
+                    binding.shopNowBtn.visibility = View.GONE
                     adapter = CartAdapter(it.response.products,requireContext())
                     binding.productRecycler.layoutManager = LinearLayoutManager(requireContext())
                     binding.productRecycler.adapter = adapter
                 }
                 else{
-
+                    binding.productRecycler.visibility = View.GONE
+                    binding.cartEmpty.visibility = View.VISIBLE
+                    binding.shopNowBtn.visibility = View.VISIBLE
                 }
 
             }

@@ -56,17 +56,42 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp">
 
                     <TextView
                         android:id="@+id/product_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
                         android:text="$500"
                         android:textColor="@color/deepblue"
                         android:textSize="20sp"
                         android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/minus"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginLeft="40dp"/>
+
+                    <TextView
+                        android:id="@+id/product_quantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2"
+                        android:textColor="@color/deepblue"
+                        android:textSize="20sp"
+                        android:layout_marginStart="20dp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/plus"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginLeft="20dp"/>
+
 
 
                 </LinearLayout>
