@@ -12,5 +12,14 @@ data class CartModel(
     val userId: String,
     @SerializedName("products")
     @Expose
-    val products: List<CartProductModel>
+    val products: List<CartProductModel>,
+    @SerializedName("bill")
+    @Expose
+    val bill: Int?=null,
+    @SerializedName("createdAt")
+    @Expose
+    val createdAt: String?=null,
+    @SerializedName("updatedAt")
+    @Expose
+    val updatedAt: String?=null
 ): java.io.Serializable

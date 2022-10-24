@@ -39,7 +39,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/checkout_layout"
             tools:listitem="@layout/item_cart_product_layout"
             android:layout_marginTop="10dp"/>
 
@@ -70,6 +70,49 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+        <LinearLayout
+            android:id="@+id/checkout_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="4"
+            android:padding="10dp"
+            android:background="@color/white"
+            android:elevation="20dp"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                android:id="@+id/total_bill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$500.0"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                app:layout_constraintTop_toBottomOf="@id/product_description"
+                android:layout_marginTop="10dp"
+                android:textSize="28sp"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                />
+
+            <Button
+                android:id="@+id/btn_place_order"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Place Order"
+                android:layout_weight="3"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/button_background"
+                android:textColor="@color/white"/>
+
+
+
+
+
+        </LinearLayout>
+
 
 
 

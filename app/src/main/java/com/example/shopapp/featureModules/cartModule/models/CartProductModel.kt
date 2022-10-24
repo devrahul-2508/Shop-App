@@ -6,24 +6,24 @@ import com.google.gson.annotations.SerializedName
 data class CartProductModel(
     @SerializedName("_id")
     @Expose
-    var id: String?,
+    var id: String?=null,
     @SerializedName("productId")
     @Expose
-    var productId: String?,
+    var productId: String?=null,
     @SerializedName("title")
     @Expose
-    var title: String?,
+    var title: String?=null,
     @SerializedName("desc")
     @Expose
-    var description: String?,
+    var description: String?=null,
     @SerializedName("img")
     @Expose
-    var img: String?,
+    var img: String?=null,
     @SerializedName("price")
     @Expose
-    var price: Int?,
+    var price: Int?=null,
     @SerializedName("quantity")
     @Expose
-    var quantity: Int?,
+    var quantity: Int?=null,
 
     ) : java.io.Serializable

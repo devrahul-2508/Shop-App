@@ -12,6 +12,27 @@ import com.example.shopapp.featureModules.cartModule.models.CartProductModel
 
 class CartAdapter(private val cartProductList: List<CartProductModel>,private val context: Context): RecyclerView.Adapter<CartAdapter.ViewHolder>() {
 
+    private var plusListener: OnPlusClickListener?=null
+    private var minusListener: OnMinusClickListener?=null
+
+    interface OnPlusClickListener{
+        fun onPlusClicked(cartProductModel: CartProductModel)
+    }
+    interface OnMinusClickListener{
+        fun onMinusClicked(cartProductModel: CartProductModel)
+    }
+
+
+    fun onPlusClickListener( mListener: OnPlusClickListener){
+        plusListener = mListener
+    }
+
+    fun onMinusClickListener(mListener: OnMinusClickListener){
+        minusListener = mListener
+    }
+
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             DataBindingUtil.inflate(
@@ -19,7 +40,9 @@ class CartAdapter(private val cartProductList: List<CartProductModel>,private va
                 R.layout.item_cart_product_layout,
                 parent,
                 false
-            )
+            ),
+            plusListener!!,
+            minusListener!!
         )
     }
 
@@ -28,7 +51,8 @@ class CartAdapter(private val cartProductList: List<CartProductModel>,private va
            val item = cartProductList[position]
             productTitle.text = item.title
             productDescription.text = item.description
-            productPrice.text = item.price.toString()
+            productPrice.setText("$"+item.price)
+           productQuantity.text = item.quantity.toString()
            Glide.with(context).load(item.img).into(productImage)
        }
     }
@@ -41,7 +65,25 @@ class CartAdapter(private val cartProductList: List<CartProductModel>,private va
 
 
 
-    inner class ViewHolder(val binding: ItemCartProductLayoutBinding): RecyclerView.ViewHolder(binding.root)
+    inner class ViewHolder(
+        val binding: ItemCartProductLayoutBinding,
+        val pListener: OnPlusClickListener,
+        val mListener:OnMinusClickListener): RecyclerView.ViewHolder(binding.root){
+        init {
+            with(binding){
+                plusSwitch.setOnClickListener{
+                    val position = absoluteAdapterPosition
+                    val item = cartProductList[position]
+                    pListener.onPlusClicked(item)
+                }
+                minusSwitch.setOnClickListener {
+                    val position = absoluteAdapterPosition
+                    val item = cartProductList[position]
+                    mListener.onMinusClicked(item)
+                }
+            }
+        }
+    }
 
 
 }

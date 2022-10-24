@@ -54,7 +54,7 @@
                     android:text="MacBook Air with M1 is an incredibly portable laptop — it’s nimble and quick, with a silent, fanless design and a beautiful Retina display. Thanks to its slim profile and all‑day battery life, this Air moves at the speed of lightness." />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginTop="10dp">
@@ -69,11 +69,12 @@
                         android:textStyle="bold" />
 
                     <ImageView
+                        android:id="@+id/minus_switch"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:src="@drawable/minus"
                         android:layout_marginTop="4dp"
-                        android:layout_marginLeft="40dp"/>
+                        android:layout_marginStart="50dp"/>
 
                     <TextView
                         android:id="@+id/product_quantity"
@@ -82,15 +83,17 @@
                         android:text="2"
                         android:textColor="@color/deepblue"
                         android:textSize="20sp"
-                        android:layout_marginStart="20dp"
+                        android:layout_marginStart="10dp"
                         android:textStyle="bold" />
 
                     <ImageView
+                        android:id="@+id/plus_switch"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:src="@drawable/plus"
                         android:layout_marginTop="4dp"
-                        android:layout_marginLeft="20dp"/>
+                        android:layout_marginStart="10dp"
+                        />
 
 
 
