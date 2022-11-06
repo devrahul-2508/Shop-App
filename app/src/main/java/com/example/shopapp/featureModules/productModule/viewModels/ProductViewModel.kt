@@ -8,7 +8,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.shopapp.featureModules.productModule.models.ProductModel
 import com.example.shopapp.featureModules.productModule.models.apiResponseModels.ApiResponseProductModel
-import com.example.shopapp.featureModules.productModule.repo.ProductRepository
+import com.example.shopapp.featureModules.productModule.repositories.ProductRepository
 import javax.inject.Inject
 
 class ProductViewModel: ViewModel() {

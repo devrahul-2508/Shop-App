@@ -2,7 +2,7 @@ package com.example.shopapp.featureModules.cartModule.di
 
 import com.example.shopapp.di.scopes.ApplicationScope
 import com.example.shopapp.featureModules.cartModule.interfaces.CartRestApi
-import com.example.shopapp.featureModules.cartModule.repository.CartRepository
+import com.example.shopapp.featureModules.cartModule.repositories.CartRepository
 import com.example.shopapp.utility.Constants
 import dagger.Module
 import dagger.Provides

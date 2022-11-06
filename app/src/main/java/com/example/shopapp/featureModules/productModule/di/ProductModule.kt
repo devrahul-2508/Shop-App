@@ -1,10 +1,8 @@
 package com.example.shopapp.featureModules.productModule.di
 
 import com.example.shopapp.di.scopes.ApplicationScope
-import com.example.shopapp.featureModules.authModule.interfaces.AuthRestApi
-import com.example.shopapp.featureModules.authModule.repositories.AuthRepository
 import com.example.shopapp.featureModules.productModule.interfaces.ProductRestApi
-import com.example.shopapp.featureModules.productModule.repo.ProductRepository
+import com.example.shopapp.featureModules.productModule.repositories.ProductRepository
 import com.example.shopapp.utility.Constants
 import dagger.Module
 import dagger.Provides
@@ -29,6 +27,6 @@ class ProductModule {
     @Provides
     @ApplicationScope
     fun providesProductRepository(
-        @Named(Constants.REST_API_WITHOUT_HEADERS) productRestApi: ProductRestApi
+        @Named(Constants.REST_API_WITH_HEADERS) productRestApi: ProductRestApi
     ): ProductRepository = ProductRepository(productRestApi)
 }

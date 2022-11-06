@@ -1,4 +1,4 @@
-package com.example.shopapp.featureModules.cartModule.repository
+package com.example.shopapp.featureModules.cartModule.repositories
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData

@@ -1,4 +1,4 @@
-package com.example.shopapp.featureModules.productModule.repo
+package com.example.shopapp.featureModules.productModule.repositories
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.Pager

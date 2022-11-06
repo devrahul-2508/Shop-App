@@ -15,4 +15,5 @@
     <color name="deepblue">#040720</color>
     <color name="green">#39c7a5</color>
     <color name="lightgray">#f4f4f4</color>
+    <color name="pending">#F29339</color>
 </resources>
