@@ -31,10 +31,47 @@ class OrderPagingAdapter(private val context:Context): PagingDataAdapter<OrderMo
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder.binding){
             val item = getItem(position)
+            var orderTitle: String = ""
             orderId.text = "Order ID:\n"+item?.orderId
             orderPrice.text = "$"+item?.amount.toString()
-            Glide.with(context).load(item!!.products[0].img).into(img)
+            when(item?.status){
+                "Pending"->{
+                    orderStatus.text = item.status
+                    orderStatus.setTextColor(context.resources.getColor(R.color.pending))
+                }
+                "Shipped"->{
+                    orderStatus.text = item.status
+                    orderStatus.setTextColor(context.resources.getColor(R.color.green))
+                }
+                "Delivered"->{
+                    orderStatus.text = item.status
+                    orderStatus.setTextColor(context.resources.getColor(R.color.green))
+                }
+                else->{
+                    "Cant Find"
+                }
+            }
+            Glide.with(context).load(item!!.products[0].img).into(img1)
+            Glide.with(context).load(item!!.products[1].img).into(img2)
+
+            val size = item.products.size
+            val limit = 2
+            for(i in 0 until limit){
+                orderTitle += if(i == limit-1){
+                    item.products[i].title+" "
+                } else{
+                    item.products[i].title+","
+
+                }
+
+            }
+            if (size>limit){
+                orderTitle+="+${size-limit} others"
+            }
+
+            productsTitle.text = orderTitle
         }
+
     }
 
 
