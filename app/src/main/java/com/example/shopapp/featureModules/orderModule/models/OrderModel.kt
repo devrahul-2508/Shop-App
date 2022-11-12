@@ -8,10 +8,10 @@ data class OrderModel(
 
     @SerializedName("_id")
     @Expose
-    val orderId: String,
+    val orderId: String?=null,
     @SerializedName("userId")
     @Expose
-    val userId: String,
+    val userId: String?=null,
     @SerializedName("products")
     @Expose
     val products: List<OrderProductModel>,

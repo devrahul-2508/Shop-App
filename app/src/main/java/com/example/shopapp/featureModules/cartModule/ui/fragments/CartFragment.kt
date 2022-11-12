@@ -18,6 +18,10 @@ import com.example.shopapp.featureModules.cartModule.di.DaggerCartComponent
 import com.example.shopapp.featureModules.cartModule.models.CartProductModel
 import com.example.shopapp.featureModules.cartModule.ui.adapters.CartAdapter
 import com.example.shopapp.featureModules.cartModule.viewModels.CartViewModel
+import com.example.shopapp.featureModules.orderModule.di.DaggerOrderComponent
+import com.example.shopapp.featureModules.orderModule.models.OrderModel
+import com.example.shopapp.featureModules.orderModule.models.OrderProductModel
+import com.example.shopapp.featureModules.orderModule.viewModels.OrderViewModel
 
 
 class CartFragment : Fragment() {
@@ -25,7 +29,9 @@ class CartFragment : Fragment() {
 
     private lateinit var binding: FragmentCartBinding
     private lateinit var cartViewModel: CartViewModel
+    private lateinit var orderViewModel: OrderViewModel
     private lateinit var adapter: CartAdapter
+    private var products: List<OrderProductModel> = arrayListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,13 +44,25 @@ class CartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         cartViewModel = ViewModelProvider(requireActivity())[CartViewModel::class.java]
+        orderViewModel = ViewModelProvider(requireActivity())[OrderViewModel::class.java]
 
         DaggerCartComponent.builder().appComponent((requireActivity().application as ShopApplication).applicationComponent()).build().also {
             it.inject(this)
             it.inject(cartViewModel)
         }
 
+        DaggerOrderComponent.builder().appComponent((requireActivity().application as ShopApplication).applicationComponent()).build().also {
+            it.inject(this)
+            it.inject(orderViewModel)
+        }
+
+
+
         buildRecyclerView()
+
+        binding.btnPlaceOrder.setOnClickListener {
+            placeOrder()
+        }
 
     }
 
@@ -54,7 +72,18 @@ class CartFragment : Fragment() {
                 if (it.response!=null) {
                     if (it.response.products.isNotEmpty()) {
 
+                    products = it.response.products.map {
+                      OrderProductModel(
+                          id = it.id,
+                          productId = it.productId,
+                          title = it.title,
+                          description = it.description,
+                          img = it.img,
+                          price = it.price,
+                          quantity = it.quantity
 
+                      )
+                    }
                     binding.productRecycler.visibility = View.VISIBLE
                     binding.cartEmpty.visibility = View.GONE
                     binding.shopNowBtn.visibility = View.GONE
@@ -112,6 +141,21 @@ class CartFragment : Fragment() {
             }
             else{
                 Toast.makeText(requireContext(),"Some error Occurred",Toast.LENGTH_SHORT).show()
+
+            }
+        }
+    }
+
+    private fun placeOrder(){
+        val orderModel = OrderModel(
+            products = products
+        )
+        orderViewModel.placeOrder(orderModel).observe(requireActivity()){
+            if (it.success){
+                Toast.makeText(requireContext(),"Successfully placed order",Toast.LENGTH_SHORT).show()
+            }
+            else{
+                Toast.makeText(requireContext(),it.message,Toast.LENGTH_SHORT).show()
 
             }
         }

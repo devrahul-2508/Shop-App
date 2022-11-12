@@ -1,6 +1,7 @@
 package com.example.shopapp.featureModules.orderModule.ui.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -11,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.example.shopapp.R
 import com.example.shopapp.databinding.ItemOrderBinding
 import com.example.shopapp.featureModules.orderModule.models.OrderModel
+import com.example.shopapp.featureModules.orderModule.ui.activities.OrdersActivity
 import com.example.shopapp.featureModules.productModule.models.ProductModel
 
 class OrderPagingAdapter(private val context:Context): PagingDataAdapter<OrderModel,OrderPagingAdapter.ViewHolder>(OrderComparator){
@@ -53,6 +55,9 @@ class OrderPagingAdapter(private val context:Context): PagingDataAdapter<OrderMo
             }
             Glide.with(context).load(item!!.products[0].img).into(img1)
             Glide.with(context).load(item!!.products[1].img).into(img2)
+            holder.itemView.setOnClickListener{
+                context.startActivity(Intent(context,OrdersActivity::class.java))
+            }
 
             val size = item.products.size
             val limit = 2
@@ -66,7 +71,14 @@ class OrderPagingAdapter(private val context:Context): PagingDataAdapter<OrderMo
 
             }
             if (size>limit){
-                orderTitle+="+${size-limit} others"
+                if(size-limit == 1){
+                    orderTitle+="+${size-limit} other"
+                }
+                else{
+                    orderTitle+="+${size-limit} others"
+
+                }
+
             }
 
             productsTitle.text = orderTitle
