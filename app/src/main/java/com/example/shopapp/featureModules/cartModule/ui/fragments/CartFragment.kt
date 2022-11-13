@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.shopapp.R
 import com.example.shopapp.application.ShopApplication
+import com.example.shopapp.databinding.CheckoutLayoutBinding
 import com.example.shopapp.databinding.FragmentCartBinding
 import com.example.shopapp.featureModules.cartModule.di.DaggerCartComponent
 import com.example.shopapp.featureModules.cartModule.models.CartProductModel
@@ -22,6 +23,7 @@ import com.example.shopapp.featureModules.orderModule.di.DaggerOrderComponent
 import com.example.shopapp.featureModules.orderModule.models.OrderModel
 import com.example.shopapp.featureModules.orderModule.models.OrderProductModel
 import com.example.shopapp.featureModules.orderModule.viewModels.OrderViewModel
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 
 class CartFragment : Fragment() {
@@ -32,6 +34,8 @@ class CartFragment : Fragment() {
     private lateinit var orderViewModel: OrderViewModel
     private lateinit var adapter: CartAdapter
     private var products: List<OrderProductModel> = arrayListOf()
+    private var amount: Int=0
+    private var address: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,7 +65,7 @@ class CartFragment : Fragment() {
         buildRecyclerView()
 
         binding.btnPlaceOrder.setOnClickListener {
-            placeOrder()
+            showCheckoutBottomSheet()
         }
 
     }
@@ -84,6 +88,8 @@ class CartFragment : Fragment() {
 
                       )
                     }
+
+                    amount = it.response.bill!!
                     binding.productRecycler.visibility = View.VISIBLE
                     binding.cartEmpty.visibility = View.GONE
                     binding.shopNowBtn.visibility = View.GONE
@@ -146,9 +152,28 @@ class CartFragment : Fragment() {
         }
     }
 
+    private fun showCheckoutBottomSheet(){
+        val bottomSheetDialog = BottomSheetDialog(requireActivity())
+        val binding = CheckoutLayoutBinding.inflate(layoutInflater)
+        bottomSheetDialog.setContentView(binding.root)
+
+        binding.btnProceed.setOnClickListener {
+            address = binding.address.text.toString()
+            placeOrder()
+            bottomSheetDialog.dismiss()
+            Handler(Looper.getMainLooper()).postDelayed({
+                buildRecyclerView()
+            }, 300)
+        }
+
+        bottomSheetDialog.show()
+    }
+
     private fun placeOrder(){
         val orderModel = OrderModel(
-            products = products
+            products = products,
+            amount = amount,
+            address = address
         )
         orderViewModel.placeOrder(orderModel).observe(requireActivity()){
             if (it.success){
