@@ -16,4 +16,6 @@
     <color name="green">#39c7a5</color>
     <color name="lightgray">#f4f4f4</color>
     <color name="pending">#F29339</color>
+    <color name="green_selected">#1FD162</color>
+    <color name="green_unselected">#B5FBCF</color>
 </resources>

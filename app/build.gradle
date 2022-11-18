@@ -83,7 +83,7 @@ dependencies {
 //
 //    implementation 'com.github.shuhart:stepview:1.5.1'
 //
-//    implementation 'com.github.baoyachi:StepView:1.9'
+    implementation 'com.github.baoyachi:StepView:1.9'
 
 
 
