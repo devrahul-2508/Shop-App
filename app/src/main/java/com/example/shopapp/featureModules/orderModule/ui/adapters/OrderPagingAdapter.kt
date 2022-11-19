@@ -14,6 +14,7 @@ import com.example.shopapp.databinding.ItemOrderBinding
 import com.example.shopapp.featureModules.orderModule.models.OrderModel
 import com.example.shopapp.featureModules.orderModule.ui.activities.OrdersActivity
 import com.example.shopapp.featureModules.productModule.models.ProductModel
+import com.example.shopapp.utility.Constants
 
 class OrderPagingAdapter(private val context:Context): PagingDataAdapter<OrderModel,OrderPagingAdapter.ViewHolder>(OrderComparator){
 
@@ -56,7 +57,9 @@ class OrderPagingAdapter(private val context:Context): PagingDataAdapter<OrderMo
             Glide.with(context).load(item!!.products[0].img).into(img1)
             Glide.with(context).load(item!!.products[1].img).into(img2)
             holder.itemView.setOnClickListener{
-                context.startActivity(Intent(context,OrdersActivity::class.java))
+                val intent = Intent(context,OrdersActivity::class.java)
+                intent.putExtra(Constants.INTENT_PARAMS.ORDER_ID,item.orderId)
+                context.startActivity(intent)
             }
 
             val size = item.products.size

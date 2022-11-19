@@ -45,6 +45,7 @@ class ProfileFragment : Fragment() {
             logoutbtn.setOnClickListener {
                 lifecycleScope.launchWhenStarted {
                     dataStoreManager.saveAccessToken("")
+                    requireActivity().finish()
                     startActivity(Intent(requireActivity(),LoginActivity::class.java))
 
                 }

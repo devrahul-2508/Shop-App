@@ -29,5 +29,11 @@ class OrderViewModel: ViewModel() {
         return orderRepository.fetchAllOrders().cachedIn(viewModelScope)
     }
 
+    fun fetchOrder(orderId: String): LiveData<ApiResponseOrderModel>{
+        val successData: MutableLiveData<ApiResponseOrderModel> = MutableLiveData()
+        orderRepository.getOrder(orderId,successData,errorData)
+        return successData
+    }
+
 
 }

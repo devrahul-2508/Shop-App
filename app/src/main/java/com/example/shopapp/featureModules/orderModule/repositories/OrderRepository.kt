@@ -47,4 +47,30 @@ class OrderRepository(
         pagingSourceFactory = {OrderPagingSource(orderRestApi)}
     ).liveData
 
+    fun getOrder(
+        orderId: String,
+        data: MutableLiveData<ApiResponseOrderModel>,
+        error: MutableLiveData<Throwable>
+    ){
+        orderRestApi.getOrder(orderId).enqueue(object : Callback<ApiResponseOrderModel>{
+            override fun onResponse(
+                call: Call<ApiResponseOrderModel>,
+                response: Response<ApiResponseOrderModel>
+            ) {
+                if (response.body()!=null){
+                    data.value = response.body()
+                }
+                else{
+                    error.value = null
+                }
+            }
+
+            override fun onFailure(call: Call<ApiResponseOrderModel>, t: Throwable) {
+                error.value = t
+
+            }
+
+        })
+    }
+
 }

@@ -17,6 +17,7 @@ object Constants {
 
     object INTENT_PARAMS{
         const val PRODUCT_ID = "productid"
+        const val ORDER_ID = "orderid"
     }
 
 }

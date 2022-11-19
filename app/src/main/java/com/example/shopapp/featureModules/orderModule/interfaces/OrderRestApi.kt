@@ -19,4 +19,9 @@ interface OrderRestApi {
         @Query("page") page: Int
     ): ApiResponseOrderModels
 
+    @GET("api/orders")
+    fun getOrder(
+        @Query("id") id: String
+    ): Call<ApiResponseOrderModel>
+
 }
