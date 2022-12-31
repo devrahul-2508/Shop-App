@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
 data class ApiResponseMainModels(
     @SerializedName("success")
     @Expose
-    var success:String?=null,
+    var success:Boolean?=null,
     @SerializedName("code")
     @Expose
     var code:String?=null,
