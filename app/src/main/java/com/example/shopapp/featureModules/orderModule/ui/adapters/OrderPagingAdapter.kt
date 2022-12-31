@@ -13,7 +13,7 @@ import com.example.shopapp.R
 import com.example.shopapp.databinding.ItemOrderBinding
 import com.example.shopapp.featureModules.orderModule.models.OrderModel
 import com.example.shopapp.featureModules.orderModule.ui.activities.OrdersActivity
-import com.example.shopapp.featureModules.productModule.models.ProductModel
+import com.example.shopapp.featureModules.productModule.di.models.ProductModel
 import com.example.shopapp.utility.Constants
 
 class OrderPagingAdapter(private val context:Context): PagingDataAdapter<OrderModel,OrderPagingAdapter.ViewHolder>(OrderComparator){

@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.example.shopapp.featureModules.productModule.models.ProductModel
-import com.example.shopapp.featureModules.productModule.models.apiResponseModels.ApiResponseProductModel
+import com.example.shopapp.featureModules.productModule.di.models.ProductModel
+import com.example.shopapp.featureModules.productModule.di.models.apiResponseModels.ApiResponseProductModel
 import com.example.shopapp.featureModules.productModule.repositories.ProductRepository
 import javax.inject.Inject
 

@@ -1,8 +1,8 @@
-package com.example.shopapp.featureModules.productModule.models.apiResponseModels
+package com.example.shopapp.featureModules.productModule.di.models.apiResponseModels
 
 import android.provider.ContactsContract.Profile
 import com.example.shopapp.featureModules.authModule.models.UserModel
-import com.example.shopapp.featureModules.productModule.models.ProductModel
+import com.example.shopapp.featureModules.productModule.di.models.ProductModel
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import  java.io.Serializable
