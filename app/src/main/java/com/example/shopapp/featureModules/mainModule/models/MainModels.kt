@@ -4,9 +4,13 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class MainModels(
+
+    @SerializedName("_id")
+    @Expose
+    var id:String?=null,
     @SerializedName("viewType")
     @Expose
-    var viewType:String?=null,
+    var viewType:Int?=null,
     @SerializedName("viewName")
     @Expose
     var viewName:String?=null,
@@ -18,5 +22,5 @@ data class MainModels(
     var trendingProductModel: TrendingProductModel?=null,
     @SerializedName("onSaleProductModel")
     @Expose
-    var onSaleProductModel: OnSaleProductModel
-)
+    var onSaleProductModel: OnSaleProductModel?=null
+):java.io.Serializable
