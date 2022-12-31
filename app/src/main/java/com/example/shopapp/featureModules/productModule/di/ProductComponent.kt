@@ -5,7 +5,7 @@ import com.example.shopapp.di.scopes.ApplicationScope
 import com.example.shopapp.featureModules.cartModule.di.CartModule
 import com.example.shopapp.featureModules.cartModule.viewModels.CartViewModel
 import com.example.shopapp.featureModules.productModule.ui.activities.ProductDetailsActivity
-import com.example.shopapp.featureModules.productModule.ui.fragments.HomeFragment
+import com.example.shopapp.featureModules.mainModule.ui.fragments.HomeFragment
 import com.example.shopapp.featureModules.productModule.viewModels.ProductViewModel
 import dagger.Component
 

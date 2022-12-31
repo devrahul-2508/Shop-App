@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.shopapp.featureModules.productModule.ui.fragments.HomeFragment"
+        android:name="com.example.shopapp.featureModules.mainModule.ui.fragments.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
