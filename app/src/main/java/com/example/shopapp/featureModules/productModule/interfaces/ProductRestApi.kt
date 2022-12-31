@@ -1,7 +1,7 @@
 package com.example.shopapp.featureModules.productModule.interfaces
 
-import com.example.shopapp.featureModules.productModule.di.models.apiResponseModels.ApiResponseProductModel
-import com.example.shopapp.featureModules.productModule.di.models.apiResponseModels.ApiResponseProductModels
+import com.example.shopapp.featureModules.productModule.models.apiResponseModels.ApiResponseProductModel
+import com.example.shopapp.featureModules.productModule.models.apiResponseModels.ApiResponseProductModels
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

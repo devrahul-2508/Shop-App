@@ -1,6 +1,6 @@
-package com.example.shopapp.featureModules.productModule.di.models.apiResponseModels
+package com.example.shopapp.featureModules.mainModule.models.apiResponseModels
 
-import com.example.shopapp.featureModules.productModule.di.models.MainModels
+import com.example.shopapp.featureModules.mainModule.models.MainModels
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 

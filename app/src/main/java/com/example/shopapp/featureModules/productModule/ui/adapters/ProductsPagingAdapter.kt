@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.shopapp.R
 import com.example.shopapp.databinding.ItemProductBinding
-import com.example.shopapp.featureModules.productModule.di.models.ProductModel
+import com.example.shopapp.featureModules.productModule.models.ProductModel
 import com.example.shopapp.featureModules.productModule.ui.activities.ProductDetailsActivity
 import com.example.shopapp.utility.Constants
 

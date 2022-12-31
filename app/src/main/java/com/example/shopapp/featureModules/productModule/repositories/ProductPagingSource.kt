@@ -3,7 +3,7 @@ package com.example.shopapp.featureModules.productModule.repositories
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.shopapp.featureModules.productModule.interfaces.ProductRestApi
-import com.example.shopapp.featureModules.productModule.di.models.ProductModel
+import com.example.shopapp.featureModules.productModule.models.ProductModel
 
 class ProductPagingSource(
     private val productRestApi: ProductRestApi,

@@ -1,4 +1,4 @@
-package com.example.shopapp.featureModules.productModule.di.models
+package com.example.shopapp.featureModules.mainModule.models
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
