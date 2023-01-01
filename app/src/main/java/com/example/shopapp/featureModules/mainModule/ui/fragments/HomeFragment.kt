@@ -10,11 +10,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
 import com.example.shopapp.R
 import com.example.shopapp.application.ShopApplication
 import com.example.shopapp.databinding.FragmentHomeBinding
 import com.example.shopapp.featureModules.mainModule.di.DaggerMainComponent
+import com.example.shopapp.featureModules.mainModule.ui.adapters.MainHomeAdapter
 import com.example.shopapp.featureModules.mainModule.viewModels.MainViewModel
 import com.example.shopapp.featureModules.productModule.di.DaggerProductComponent
 import com.example.shopapp.featureModules.productModule.ui.adapters.ProductsPagingAdapter
@@ -28,6 +30,7 @@ class HomeFragment : Fragment() {
     private lateinit var productViewModel: ProductViewModel
     private lateinit var mainViewModel: MainViewModel
     private lateinit var adapter: ProductsPagingAdapter
+    private lateinit var mainHomeAdapter: MainHomeAdapter
     private var title: String?=null
     private var category: String?=null
 
@@ -58,24 +61,27 @@ class HomeFragment : Fragment() {
         binding.productRecycler.layoutManager = GridLayoutManager(requireContext(),2,VERTICAL,false)
         binding.productRecycler.adapter = adapter
 
-        getProducts()
+        //getProducts()
         getMainModels()
     }
 
-  private fun getProducts(){
+ /* private fun getProducts(){
 
       productViewModel.getAllProducts(title,category).observe(requireActivity()){
           lifecycleScope.launchWhenStarted {
               adapter.submitData(it)
           }
       }
-  }
+  }*/
 
     private fun getMainModels(){
+        mainHomeAdapter = MainHomeAdapter(requireActivity())
+        binding.productRecycler.layoutManager = LinearLayoutManager(requireContext())
+        binding.productRecycler.adapter = mainHomeAdapter
         mainViewModel.mainModels().observe(requireActivity()){
-            if (it.success == true){
-                Log.d("TAG",it.response.toString())
-            }
+           lifecycleScope.launchWhenStarted {
+               mainHomeAdapter.submitData(it)
+           }
         }
     }
 
