@@ -14,8 +14,10 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins"
             android:text="Hot Sales"
+            android:layout_marginStart="10dp"
+
             android:textColor="@color/black"
-            android:textSize="30sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

@@ -8,7 +8,7 @@
        android:layout_width="match_parent"
        android:layout_height="match_parent">
 
-       <LinearLayout
+       <!--<LinearLayout
            android:id="@+id/linearl"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
@@ -50,7 +50,23 @@
            </ImageView>
 
 
-       </LinearLayout>
+       </LinearLayout>-->
+
+       <TextView
+           android:id="@+id/searchView"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:hint="Search For a product or category"
+           android:textSize="18sp"
+           app:layout_constraintTop_toTopOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           android:layout_marginHorizontal="15dp"
+           android:padding="10dp"
+           android:background="@drawable/textview_background"
+           android:drawableStart="@drawable/ic_back"
+           android:drawableEnd="@drawable/ic_search"
+           android:layout_marginTop="20dp"/>
 
        <androidx.recyclerview.widget.RecyclerView
            android:id="@+id/product_recycler"
@@ -59,7 +75,7 @@
            android:layout_marginHorizontal="10dp"
            app:layout_constraintStart_toStartOf="parent"
            app:layout_constraintEnd_toEndOf="parent"
-           app:layout_constraintTop_toBottomOf="@id/linearl"
+           app:layout_constraintTop_toBottomOf="@id/searchView"
            app:layout_constraintBottom_toBottomOf="parent"
            tools:listitem="@layout/item_product"
            android:layout_marginTop="10dp"/>
