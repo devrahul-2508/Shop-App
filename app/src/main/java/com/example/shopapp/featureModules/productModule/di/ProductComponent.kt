@@ -6,6 +6,7 @@ import com.example.shopapp.featureModules.cartModule.di.CartModule
 import com.example.shopapp.featureModules.cartModule.viewModels.CartViewModel
 import com.example.shopapp.featureModules.productModule.ui.activities.ProductDetailsActivity
 import com.example.shopapp.featureModules.mainModule.ui.fragments.HomeFragment
+import com.example.shopapp.featureModules.productModule.ui.activities.SearchActivity
 import com.example.shopapp.featureModules.productModule.viewModels.ProductViewModel
 import dagger.Component
 
@@ -17,4 +18,5 @@ interface ProductComponent {
     fun inject(homeFragment: HomeFragment)
     fun inject(productDetailsActivity: ProductDetailsActivity)
     fun inject(cartViewModel: CartViewModel)
+    fun inject(searchActivity: SearchActivity)
 }

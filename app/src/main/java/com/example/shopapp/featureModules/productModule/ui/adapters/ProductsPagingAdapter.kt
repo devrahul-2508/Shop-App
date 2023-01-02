@@ -37,11 +37,11 @@ class ProductsPagingAdapter(private val context: Context): PagingDataAdapter<Pro
 
             Glide.with(context).load(item?.img).into(productImage)
             productTitle.text = item?.title
-            var categories:String= "In"
+            var categories:String= "In"+' '
             val size = item?.categories?.size
             val limit = 2
-            for(i in 0 until limit){
-                categories += if(i == limit-1){
+            for(i in 0 until size!!){
+                categories += if(i == size-1){
                     item?.categories?.get(i) +" "
                 } else{
                     item?.categories?.get(i) +","
