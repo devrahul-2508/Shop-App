@@ -1,5 +1,6 @@
 package com.example.shopapp.featureModules.mainModule.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -19,6 +20,7 @@ import com.example.shopapp.featureModules.mainModule.di.DaggerMainComponent
 import com.example.shopapp.featureModules.mainModule.ui.adapters.MainHomeAdapter
 import com.example.shopapp.featureModules.mainModule.viewModels.MainViewModel
 import com.example.shopapp.featureModules.productModule.di.DaggerProductComponent
+import com.example.shopapp.featureModules.productModule.ui.activities.SearchActivity
 import com.example.shopapp.featureModules.productModule.ui.adapters.ProductsPagingAdapter
 import com.example.shopapp.featureModules.productModule.viewModels.ProductViewModel
 
@@ -63,6 +65,11 @@ class HomeFragment : Fragment() {
 
         //getProducts()
         getMainModels()
+
+
+        binding.searchView.setOnClickListener {
+            startActivity(Intent(requireActivity(),SearchActivity::class.java))
+        }
     }
 
  /* private fun getProducts(){

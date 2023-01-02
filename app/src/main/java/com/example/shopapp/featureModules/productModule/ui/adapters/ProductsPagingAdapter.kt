@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.shopapp.R
 import com.example.shopapp.databinding.ItemProductBinding
+import com.example.shopapp.databinding.ItemSearchProductBinding
 import com.example.shopapp.featureModules.productModule.models.ProductModel
 import com.example.shopapp.featureModules.productModule.ui.activities.ProductDetailsActivity
 import com.example.shopapp.utility.Constants
@@ -23,7 +24,7 @@ class ProductsPagingAdapter(private val context: Context): PagingDataAdapter<Pro
        return ProductsViewHolder(
            DataBindingUtil.inflate(
                LayoutInflater.from(context),
-               R.layout.item_product,
+               R.layout.item_search_product,
                parent,
                false
            )
@@ -36,8 +37,20 @@ class ProductsPagingAdapter(private val context: Context): PagingDataAdapter<Pro
 
             Glide.with(context).load(item?.img).into(productImage)
             productTitle.text = item?.title
-            productDescription.text = item?.desc
-            productPrice.text = "$"+item?.price
+            var categories:String= "In"
+            val size = item?.categories?.size
+            val limit = 2
+            for(i in 0 until limit){
+                categories += if(i == limit-1){
+                    item?.categories?.get(i) +" "
+                } else{
+                    item?.categories?.get(i) +","
+
+                }
+
+            }
+            productCategory.text = categories
+
 
 
         }
@@ -53,7 +66,7 @@ class ProductsPagingAdapter(private val context: Context): PagingDataAdapter<Pro
 
 
 
-    inner class ProductsViewHolder(val binding: ItemProductBinding): RecyclerView.ViewHolder(binding.root)
+    inner class ProductsViewHolder(val binding: ItemSearchProductBinding): RecyclerView.ViewHolder(binding.root)
 
     object ProductComparator : DiffUtil.ItemCallback<ProductModel>() {
         override fun areItemsTheSame(oldItem: ProductModel, newItem: ProductModel): Boolean {
