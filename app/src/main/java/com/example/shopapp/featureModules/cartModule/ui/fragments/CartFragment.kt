@@ -73,27 +73,27 @@ class CartFragment : Fragment() {
     private fun buildRecyclerView(){
         cartViewModel.getCart().observe(requireActivity()){
             if (it.success){
-                if (it.response!=null) {
-                    if (it.response.products.isNotEmpty()) {
+                if (it.response!=null || it.response?.products?.isNotEmpty() == true) {
+
 
                     products = it.response.products.map {
-                      OrderProductModel(
-                          id = it.id,
-                          productId = it.productId,
-                          title = it.title,
-                          description = it.description,
-                          img = it.img,
-                          price = it.price,
-                          quantity = it.quantity
+                        OrderProductModel(
+                            id = it.id,
+                            productId = it.productId,
+                            title = it.title,
+                            description = it.description,
+                            img = it.img,
+                            price = it.price,
+                            quantity = it.quantity
 
-                      )
+                        )
                     }
 
                     amount = it.response.bill!!
                     binding.productRecycler.visibility = View.VISIBLE
                     binding.cartEmpty.visibility = View.GONE
                     binding.shopNowBtn.visibility = View.GONE
-                        binding.checkoutLayout.visibility = View.VISIBLE
+                    binding.checkoutLayout.visibility = View.VISIBLE
                     adapter = CartAdapter(it.response.products, requireContext())
                     binding.productRecycler.layoutManager = LinearLayoutManager(requireContext())
                     binding.productRecycler.adapter = adapter
@@ -105,7 +105,7 @@ class CartFragment : Fragment() {
                             modifyCart(cartProductModel)
 
                             Handler(Looper.getMainLooper()).postDelayed({
-                              buildRecyclerView()
+                                buildRecyclerView()
                             }, 300)
 
                         }
@@ -124,16 +124,22 @@ class CartFragment : Fragment() {
                         }
 
                     })
-                }
-                    else{
-                        binding.productRecycler.visibility = View.GONE
-                        binding.cartEmpty.visibility = View.VISIBLE
-                        binding.shopNowBtn.visibility = View.VISIBLE
-                        binding.checkoutLayout.visibility = View.GONE
-                    }
+
+
+                } else{
+                    binding.productRecycler.visibility = View.GONE
+                    binding.cartEmpty.visibility = View.VISIBLE
+                    binding.shopNowBtn.visibility = View.VISIBLE
+                    binding.checkoutLayout.visibility = View.GONE
                 }
 
 
+            }
+            else{
+                binding.productRecycler.visibility = View.GONE
+                binding.cartEmpty.visibility = View.VISIBLE
+                binding.shopNowBtn.visibility = View.VISIBLE
+                binding.checkoutLayout.visibility = View.GONE
             }
         }
     }

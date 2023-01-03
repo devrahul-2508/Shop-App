@@ -19,8 +19,7 @@
             app:queryHint="Search"
             app:iconifiedByDefault="false"
             app:layout_constraintEnd_toEndOf="parent"
-            app:queryBackground="@color/white"
-            app:defaultQueryHint="Search"/>
+            app:defaultQueryHint="Search Products or Categories"/>
 
 
         <androidx.recyclerview.widget.RecyclerView
