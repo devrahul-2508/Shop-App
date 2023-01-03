@@ -14,6 +14,10 @@ import com.example.shopapp.databinding.FragmentProfileBinding
 import com.example.shopapp.featureModules.authModule.di.DaggerAuthComponent
 import com.example.shopapp.featureModules.authModule.ui.activities.LoginActivity
 import com.example.shopapp.utility.DataStoreManager
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -34,6 +38,7 @@ class ProfileFragment : Fragment() {
         return binding.root
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -43,7 +48,7 @@ class ProfileFragment : Fragment() {
 
         with(binding){
             logoutbtn.setOnClickListener {
-                lifecycleScope.launchWhenStarted {
+                GlobalScope.launch (Dispatchers.Main){
                     dataStoreManager.saveAccessToken("")
                     requireActivity().finish()
                     startActivity(Intent(requireActivity(),LoginActivity::class.java))

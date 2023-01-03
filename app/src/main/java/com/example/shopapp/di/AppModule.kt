@@ -2,6 +2,7 @@ package com.example.shopapp.di
 
 import android.app.Application
 import android.content.Context
+import android.util.Log
 import com.example.shopapp.utility.Constants
 import com.example.shopapp.utility.DataStoreManager
 import dagger.Module
@@ -25,9 +26,9 @@ class AppModule(val context: Application) {
     fun provideContext(): Context = context
 
     @Provides
-    @Singleton
     fun providesOkHttpClient(dataStoreManager: DataStoreManager): OkHttpClient{
         val accessToken = runBlocking { dataStoreManager.accessToken.first() }
+        Log.d("INTERCEPTOR",accessToken)
         return OkHttpClient.Builder().addInterceptor { chain ->
             val newRequest: Request = chain.request().newBuilder()
                 .addHeader("Authorization", "Bearer $accessToken")
@@ -37,7 +38,6 @@ class AppModule(val context: Application) {
     }
 
     @Provides
-    @Singleton
     @Named(Constants.Retrofit.WITH_HEADERS)
     fun providesRetrofitWithHeaders(client : OkHttpClient): Retrofit {
         return Retrofit.Builder()
@@ -48,7 +48,6 @@ class AppModule(val context: Application) {
     }
 
     @Provides
-    @Singleton
     @Named(Constants.Retrofit.WITHOUT_HEADERS)
     fun providesRetrofitWithoutHeaders(): Retrofit {
         return Retrofit.Builder()

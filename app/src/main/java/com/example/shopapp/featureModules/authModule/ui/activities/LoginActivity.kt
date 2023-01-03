@@ -17,11 +17,8 @@ import com.example.shopapp.featureModules.authModule.di.DaggerAuthComponent
 import com.example.shopapp.featureModules.authModule.models.UserModel
 import com.example.shopapp.featureModules.authModule.viewmodels.AuthViewModel
 import com.example.shopapp.utility.DataStoreManager
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 class LoginActivity : AppCompatActivity() {
@@ -46,6 +43,7 @@ class LoginActivity : AppCompatActivity() {
 
         handleIntent()
 
+
         with(binding){
             btnLogin.setOnClickListener {
                 loginUser()
@@ -56,6 +54,7 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
+    @OptIn(DelicateCoroutinesApi::class)
     private fun loginUser(){
         val email = binding.email.text.toString()
         val password = binding.password.text.toString()
@@ -64,13 +63,20 @@ class LoginActivity : AppCompatActivity() {
 
         authViewModel.loginUser(userModel).observe(this){
 
-            if (it.success!!){
+            if (it.success){
 
-                lifecycleScope.launchWhenStarted {
+              GlobalScope.launch(Dispatchers.Main){
+                  Log.d("BAMACCAPI",it.response?.accessToken!!)
                     dataStoreManager.saveAccessToken(it.response?.accessToken!!)
+
+                  accessToken = runBlocking { dataStoreManager.accessToken.first() }
+                  Log.d("BAMACC", accessToken!!)
+
+                  startActivity(Intent(this@LoginActivity,MainActivity::class.java))
+                  finish()
                 }
-                startActivity(Intent(this,MainActivity::class.java))
-                finish()
+
+
 
             }
             else{
@@ -85,11 +91,12 @@ class LoginActivity : AppCompatActivity() {
 
 
         accessToken = runBlocking { dataStoreManager.accessToken.first() }
-        if (accessToken!!.isNotEmpty()){
+        Log.d("BAMACC",accessToken.toString())
+
+        if (accessToken!!.isNotEmpty() || accessToken!!.isNotBlank()){
             startActivity(Intent(this,MainActivity::class.java))
             finish()
         }
-        Log.d("BAMACC",accessToken.toString())
 
 
 
