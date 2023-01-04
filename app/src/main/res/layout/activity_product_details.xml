@@ -86,41 +86,48 @@
             android:layout_marginHorizontal="10dp"
             android:fontFamily="@font/poppins"/>
 
-                <TextView
-                    android:id="@+id/product_price"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="$500.0"
+           <ImageView
+
+               android:layout_width="30dp"
+               android:layout_height="30dp"
+               android:layout_marginTop="15dp"
+               android:layout_marginStart="15dp"
+               app:layout_constraintTop_toBottomOf="@id/product_description"
+               app:layout_constraintStart_toStartOf="parent"
+               android:src="@drawable/rev1"/>
+
+
+                <ImageView
+
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="40dp"
                     app:layout_constraintTop_toBottomOf="@id/product_description"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:textSize="25sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/deepblue"
-                    />
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:src="@drawable/rev2"/>
+
+                <ImageView
+                    android:id="@+id/rev3"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="65dp"
+                    app:layout_constraintTop_toBottomOf="@id/product_description"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:src="@drawable/rev3"/>
 
                 <TextView
-                    android:id="@+id/size_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Size"
-                    app:layout_constraintTop_toBottomOf="@id/product_price"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginTop="20dp"
-                    android:textSize="20sp"
-                    android:padding="10dp"
-                    android:fontFamily="@font/poppins"/>
+                    android:text="8500+ people reviewed it"
+                    app:layout_constraintStart_toEndOf="@id/rev3"
+                    app:layout_constraintTop_toTopOf="@id/rev3"
+                    app:layout_constraintBottom_toBottomOf="@id/rev3"
+                    android:layout_marginStart="10dp"
+                    android:textColor="@color/black"/>
 
-                <Button
-                    android:id="@+id/product_size"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:text="13'"
-                    android:textSize="20sp"
-                    android:background="@drawable/search_background"
-                    app:layout_constraintStart_toEndOf="@id/size_label"
-                    app:layout_constraintTop_toTopOf="@id/size_label"
-                    app:layout_constraintBottom_toBottomOf="@id/size_label"/>
+
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
