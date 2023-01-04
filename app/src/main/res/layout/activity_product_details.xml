@@ -30,16 +30,31 @@
             android:textSize="15sp"
             android:layout_gravity="center"
             android:textStyle="bold"
+            android:textColor="@color/black"
             android:fontFamily="@font/poppins"/>
 
     </Toolbar>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintBottom_toTopOf="@id/checkout_layout">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+
+
 
         <View
             android:id="@+id/view"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:background="@color/lightgray"
-            app:layout_constraintTop_toBottomOf="@id/toolbar"/>
+            app:layout_constraintTop_toTopOf="parent"/>
 
 
         <ImageView
@@ -47,7 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_marginTop="50dp"
-            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintTop_toTopOf="parent"
             android:src="@drawable/mac"/>
 
         <TextView
@@ -67,45 +82,53 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/product_title"
-            android:text="MacBook Air with M1 is an incredibly portable laptop — it’s nimble and quick, with a silent, fanless design and a beautiful Retina display. Thanks to its slim profile and all‑day battery life, this Air moves at the speed of lightness."
+            android:text="MacBook Air with M1 is an incredibly portable laptop — it’s nimble and quick, with a silent, fanless design and a beautiful Retina display. Thanks to its slim profile and all‑day battery life, this Air moves at the speed of lightness.Apple silicon integrates the CPU, GPU, Neural Engine, I/O and so much more onto a single tiny chip. Packed with an astonishing 16 billion transistors, M1 delivers exceptional performance, custom technologies and unbelievable power efficiency — a major breakthrough for Macekfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff."
             android:layout_marginHorizontal="10dp"
             android:fontFamily="@font/poppins"/>
 
-        <TextView
-            android:id="@+id/product_price"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="$500.0"
-            app:layout_constraintTop_toBottomOf="@id/product_description"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:textColor="@color/deepblue"
-            />
+                <TextView
+                    android:id="@+id/product_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="$500.0"
+                    app:layout_constraintTop_toBottomOf="@id/product_description"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/deepblue"
+                    />
 
-        <TextView
-            android:id="@+id/size_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Size"
-            app:layout_constraintTop_toBottomOf="@id/product_price"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="20dp"
-            android:textSize="20sp"
-            android:padding="10dp"
-          android:fontFamily="@font/poppins"/>
+                <TextView
+                    android:id="@+id/size_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Size"
+                    app:layout_constraintTop_toBottomOf="@id/product_price"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="20dp"
+                    android:textSize="20sp"
+                    android:padding="10dp"
+                    android:fontFamily="@font/poppins"/>
 
-        <Button
-            android:id="@+id/product_size"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:text="13'"
-            android:textSize="20sp"
-            android:background="@drawable/search_background"
-            app:layout_constraintStart_toEndOf="@id/size_label"
-            app:layout_constraintTop_toTopOf="@id/size_label"
-            app:layout_constraintBottom_toBottomOf="@id/size_label"/>
+                <Button
+                    android:id="@+id/product_size"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:text="13'"
+                    android:textSize="20sp"
+                    android:background="@drawable/search_background"
+                    app:layout_constraintStart_toEndOf="@id/size_label"
+                    app:layout_constraintTop_toTopOf="@id/size_label"
+                    app:layout_constraintBottom_toBottomOf="@id/size_label"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+        </ScrollView>
 
 
         <LinearLayout
@@ -113,6 +136,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:weightSum="4"
+            android:background="@color/white"
             android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent">
 

@@ -42,6 +42,9 @@ class ProductDetailsActivity : AppCompatActivity() {
         binding.btnAddToCart.setOnClickListener {
             addToCart()
         }
+        binding.back.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun getProductDetails() {
