@@ -123,6 +123,7 @@
                     android:text="8500+ people reviewed it"
                     app:layout_constraintStart_toEndOf="@id/rev3"
                     app:layout_constraintTop_toTopOf="@id/rev3"
+                    android:fontFamily="@font/poppins"
                     app:layout_constraintBottom_toBottomOf="@id/rev3"
                     android:layout_marginStart="10dp"
                     android:textColor="@color/black"/>
