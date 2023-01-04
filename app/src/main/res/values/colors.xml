@@ -23,4 +23,5 @@
     <color name="product_gray">#d7d8e1</color>
     <color name="red">#c9383b</color>
     <color name="yellow">#fccf6e</color>
+    <color name="background">#fbfafe</color>
 </resources>

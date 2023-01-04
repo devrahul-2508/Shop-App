@@ -47,7 +47,7 @@ class ProfileFragment : Fragment() {
         }
 
         with(binding){
-            logoutbtn.setOnClickListener {
+            logoutCardview.setOnClickListener {
                 GlobalScope.launch (Dispatchers.Main){
                     dataStoreManager.saveAccessToken("")
                     requireActivity().finish()
