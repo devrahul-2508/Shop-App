@@ -15,7 +15,7 @@
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:hint="Email"
-           android:drawableStart="@drawable/ic_email"
+           android:drawableStart="@drawable/ic_email_new"
            app:layout_constraintStart_toStartOf="parent"
            android:background="@drawable/round_corners"
            android:layout_marginHorizontal="20dp"

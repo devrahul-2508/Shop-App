@@ -21,4 +21,6 @@
     <color name="light_gray">#BBBBBB</color>
     <color name="pink">#fde1e6</color>
     <color name="product_gray">#d7d8e1</color>
+    <color name="red">#c9383b</color>
+    <color name="yellow">#fccf6e</color>
 </resources>
