@@ -8,7 +8,11 @@ object Constants {
         const val WITH_HEADERS="with headers"
     }
 
+    const val USER_NAME="USER_NAME"
+    const val EMAIL="EMAIL"
+    const val IS_ADMIN="IS_ADMIN"
     const val ACCESS_TOKEN = "ACCESS_TOKEN"
+
     const val APPLICATION_CONTEXT = "APPLICATION_CONTEXT"
 
     const val REST_API_WITH_HEADERS = "RestApiWithHeaders"

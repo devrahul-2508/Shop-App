@@ -12,12 +12,11 @@ import com.example.shopapp.R
 import com.example.shopapp.application.ShopApplication
 import com.example.shopapp.databinding.FragmentProfileBinding
 import com.example.shopapp.featureModules.authModule.di.DaggerAuthComponent
+import com.example.shopapp.featureModules.authModule.models.UserModel
 import com.example.shopapp.featureModules.authModule.ui.activities.LoginActivity
 import com.example.shopapp.utility.DataStoreManager
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
 
@@ -47,9 +46,16 @@ class ProfileFragment : Fragment() {
         }
 
         with(binding){
+
+            val user = runBlocking { dataStoreManager.user.first() }
+
+            username.text = user.userName
+            email.text = user.email
+
             logoutCardview.setOnClickListener {
-                GlobalScope.launch (Dispatchers.Main){
-                    dataStoreManager.saveAccessToken("")
+                lifecycleScope.launchWhenStarted{
+                   val user = UserModel(userName = "", email = "", accessToken = "", isAdmin = false )
+                    dataStoreManager.saveUser(user)
                     requireActivity().finish()
                     startActivity(Intent(requireActivity(),LoginActivity::class.java))
 

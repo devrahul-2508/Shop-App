@@ -27,8 +27,8 @@ class AppModule(val context: Application) {
 
     @Provides
     fun providesOkHttpClient(dataStoreManager: DataStoreManager): OkHttpClient{
-        val accessToken = runBlocking { dataStoreManager.accessToken.first() }
-        Log.d("INTERCEPTOR",accessToken)
+        val user = runBlocking { dataStoreManager.user.first() }
+        val accessToken = user.accessToken
         return OkHttpClient.Builder().addInterceptor { chain ->
             val newRequest: Request = chain.request().newBuilder()
                 .addHeader("Authorization", "Bearer $accessToken")

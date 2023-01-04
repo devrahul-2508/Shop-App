@@ -58,7 +58,7 @@ class SignUpActivity : AppCompatActivity() {
                 if (it.success){
                     accessToken = it.response?.accessToken
                     lifecycleScope.launchWhenStarted {
-                        dataStoreManager.saveAccessToken(accessToken!!)
+                        dataStoreManager.saveUser(it.response!!)
                     }
                     startActivity(Intent(this@SignUpActivity, MainActivity::class.java))
                     finish()

@@ -26,6 +26,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var authViewModel: AuthViewModel
     private var accessToken: String ?=null
+    private var user:UserModel?=null
 
     @Inject
     lateinit var dataStoreManager: DataStoreManager
@@ -65,12 +66,10 @@ class LoginActivity : AppCompatActivity() {
 
             if (it.success){
 
-              GlobalScope.launch(Dispatchers.Main){
+              lifecycleScope.launchWhenStarted{
                   Log.d("BAMACCAPI",it.response?.accessToken!!)
-                    dataStoreManager.saveAccessToken(it.response?.accessToken!!)
+                    dataStoreManager.saveUser(it.response)
 
-                  accessToken = runBlocking { dataStoreManager.accessToken.first() }
-                  Log.d("BAMACC", accessToken!!)
 
                   startActivity(Intent(this@LoginActivity,MainActivity::class.java))
                   finish()
@@ -90,10 +89,10 @@ class LoginActivity : AppCompatActivity() {
 
 
 
-        accessToken = runBlocking { dataStoreManager.accessToken.first() }
-        Log.d("BAMACC",accessToken.toString())
+        user = runBlocking { dataStoreManager.user.first() }
+        Log.d("BAMUSER",user.toString())
 
-        if (accessToken!!.isNotEmpty() || accessToken!!.isNotBlank()){
+        if (user?.accessToken!!.isNotEmpty() || user?.accessToken!!.isNotBlank()){
             startActivity(Intent(this,MainActivity::class.java))
             finish()
         }
