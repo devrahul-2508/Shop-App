@@ -70,8 +70,10 @@ class MainHomeAdapter(private val context: Context):PagingDataAdapter<MainModels
                 val h = holder as TrendingViewHolder
                 val trendingProductsAdapter = TrendingProductsAdapter(item.trendingProductModel?.products!!,context)
                 h.trendingProductsLayoutBinding.productRecycler.layoutManager=
-                    GridLayoutManager(context,2, LinearLayoutManager.VERTICAL,false)
+                    LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
                 h.trendingProductsLayoutBinding.productRecycler.adapter=trendingProductsAdapter
+
+                // GridLayoutManager(context,2, LinearLayoutManager.VERTICAL,false)
             }
         }
     }

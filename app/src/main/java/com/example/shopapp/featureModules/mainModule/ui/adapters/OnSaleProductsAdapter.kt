@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -25,7 +26,26 @@ class OnSaleProductsAdapter(private val products:List<ProductModel>,private val 
 
     override fun onBindViewHolder(holder: OnSaleProductsViewHolder, position: Int) {
         val item = products[position]
+
         with(holder.binding){
+
+            if(position % 5 ==0){
+                coloredBar.setBackgroundResource(R.drawable.view_background_violet);
+
+
+            }
+            else if(position % 3 ==0){
+                coloredBar.setBackgroundResource(R.drawable.view_background_yellow);
+            }
+            else if(position % 2 ==0){
+                coloredBar.setBackgroundResource(R.drawable.view_background_pink);
+            }
+            else{
+                coloredBar.setBackgroundResource(R.drawable.view_background_blue);
+
+            }
+
+
 
             Glide.with(context).load(item?.img).into(productImage)
             productTitle.text = item?.title

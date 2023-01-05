@@ -56,7 +56,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                         it.response?.let { product ->
                             productTitle.text = product.title
                             productDescription.text = product.desc
-                            productPriceCart.text = product.price.toString()
+                            productPriceCart.text = "$"+product.price.toString()
                             Glide.with(this@ProductDetailsActivity).load(product.img).into(productImage)
                         }
                     }

@@ -18,10 +18,12 @@
     <color name="pending">#F29339</color>
     <color name="green_selected">#1FD162</color>
     <color name="green_unselected">#B5FBCF</color>
-    <color name="light_gray">#BBBBBB</color>
-    <color name="pink">#fde1e6</color>
-    <color name="product_gray">#d7d8e1</color>
     <color name="red">#c9383b</color>
     <color name="yellow">#fccf6e</color>
     <color name="background">#fbfafe</color>
+
+    <color name="light_gray">#BBBBBB</color>
+    <color name="pink">#fde1e6</color>
+    <color name="product_gray">#d7d8e1</color>
+    <color name="violet">#dcd1fc</color>
 </resources>

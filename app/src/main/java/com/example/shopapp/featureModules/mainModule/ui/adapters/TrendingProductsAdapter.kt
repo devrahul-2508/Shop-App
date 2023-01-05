@@ -31,6 +31,19 @@ class TrendingProductsAdapter(val products:List<ProductModel>, private val conte
             productDescription.text = item?.desc
             productPrice.text = "$"+item?.price
 
+            if(position % 5 ==0){
+                coloredBar.setBackgroundResource(com.example.shopapp.R.drawable.view_background_yellow);
+            }
+            else if(position % 3 ==0){
+                coloredBar.setBackgroundResource(com.example.shopapp.R.drawable.view_background_blue);
+            }
+            else if(position % 2 ==0){
+                coloredBar.setBackgroundResource(com.example.shopapp.R.drawable.view_background_violet);
+            }
+            else{
+                coloredBar.setBackgroundResource(com.example.shopapp.R.drawable.view_background_pink);
+
+            }
 
         }
 
