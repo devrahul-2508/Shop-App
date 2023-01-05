@@ -6,63 +6,22 @@
 
    <androidx.constraintlayout.widget.ConstraintLayout
        android:layout_width="match_parent"
-       android:layout_height="match_parent">
+       android:layout_height="match_parent"
+       android:background="@color/white">
 
-       <!--<LinearLayout
-           android:id="@+id/linearl"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:layout_marginHorizontal="10dp"
-           android:layout_marginTop="20dp"
-           android:layout_marginBottom="10dp"
-           android:background="@drawable/search_background"
-           android:focusable="true"
-           app:layout_constraintTop_toTopOf="parent"
-           app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintEnd_toEndOf="parent"
-           android:focusableInTouchMode="true"
-           android:orientation="horizontal"
-           android:weightSum="4">
-
-
-           <EditText
-               android:id="@+id/idEdtSearch"
-               android:layout_width="0dp"
-               android:layout_height="wrap_content"
-               android:layout_weight="3.5"
-               android:backgroundTint="@android:color/transparent"
-               android:hint="Search for Products or Categories"
-               android:textColorHint= "@color/grey"
-               android:padding="10dp"
-               android:singleLine="true">
-
-           </EditText>
-
-           <ImageView
-               android:id="@+id/idIVSearch"
-               android:layout_width="0dp"
-               android:layout_height="wrap_content"
-               android:layout_gravity="center"
-               android:layout_weight="0.5"
-               android:padding="4dp"
-               android:src="@drawable/ic_search">
-
-           </ImageView>
-
-
-       </LinearLayout>-->
 
        <TextView
            android:id="@+id/searchView"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:hint="Search For a product or category"
-           android:textSize="18sp"
+           android:textSize="16sp"
            app:layout_constraintTop_toTopOf="parent"
            app:layout_constraintStart_toStartOf="parent"
            app:layout_constraintEnd_toEndOf="parent"
            android:layout_marginHorizontal="15dp"
            android:padding="10dp"
+           android:fontFamily="@font/poppins"
            android:background="@drawable/textview_background"
            android:drawableStart="@drawable/ic_back"
            android:drawableEnd="@drawable/ic_search"
