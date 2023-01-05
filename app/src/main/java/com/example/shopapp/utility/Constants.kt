@@ -24,9 +24,9 @@ object Constants {
         const val ORDER_ID = "orderid"
     }
     object VIEW_TYPES{
-        const val TOP_SELLING_VIEWTYPE = 600
-        const val TRENDING_VIEWTYPE= 700
-        const val ON_SALE_VIEWTYPE = 800
+        const val ON_SALE_VIEWTYPE = 600
+        const val TOP_SELLING_VIEWTYPE = 700
+        const val TRENDING_VIEWTYPE= 800
     }
 
 }

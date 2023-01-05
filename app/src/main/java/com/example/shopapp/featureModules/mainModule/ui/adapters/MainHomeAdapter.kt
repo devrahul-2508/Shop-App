@@ -23,19 +23,21 @@ class MainHomeAdapter(private val context: Context):PagingDataAdapter<MainModels
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
        return when(viewType){
             1->{
+                OnSaleViewHolder(
+                    DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.on_sale_products_layout,parent,false))
+
+
+            }
+            2->{
+
                 TopSellingViewHolder(
                     DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.top_selling_products_layout,parent,false)
                 )
-            }
-            2->{
-               TrendingViewHolder(
-                    DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.trending_products_layout,parent,false)
 
-                )
             }
             else->{
-                OnSaleViewHolder(
-                    DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.on_sale_products_layout,parent,false)
+                TrendingViewHolder(
+                    DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.trending_products_layout,parent,false)
 
                 )
             }
@@ -48,25 +50,28 @@ class MainHomeAdapter(private val context: Context):PagingDataAdapter<MainModels
        val item = getItem(position)
         when(item?.viewType){
             600->{
+
+                val h = holder as OnSaleViewHolder
+                val onSaleProductsAdapter = OnSaleProductsAdapter(item.onSaleProductModel?.products!!,context)
+                h.onSaleProductsLayoutBinding.productRecycler.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+                h.onSaleProductsLayoutBinding.productRecycler.adapter = onSaleProductsAdapter
+
+
+            }
+
+            700->{
                 val h = holder as TopSellingViewHolder
                 val topSellingProductsAdapter = TopSellingProductsAdapter(item.topSellingProductModel?.products!!, context)
                 h.topSellingProductBinding.productRecycler.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
                 h.topSellingProductBinding.productRecycler.adapter = topSellingProductsAdapter
 
             }
-
-            700->{
+            800->{
                 val h = holder as TrendingViewHolder
                 val trendingProductsAdapter = TrendingProductsAdapter(item.trendingProductModel?.products!!,context)
                 h.trendingProductsLayoutBinding.productRecycler.layoutManager=
                     GridLayoutManager(context,2, LinearLayoutManager.VERTICAL,false)
                 h.trendingProductsLayoutBinding.productRecycler.adapter=trendingProductsAdapter
-            }
-            800->{
-                val h = holder as OnSaleViewHolder
-                val onSaleProductsAdapter = OnSaleProductsAdapter(item.onSaleProductModel?.products!!,context)
-                h.onSaleProductsLayoutBinding.productRecycler.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
-                h.onSaleProductsLayoutBinding.productRecycler.adapter = onSaleProductsAdapter
             }
         }
     }
