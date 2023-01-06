@@ -14,6 +14,7 @@ import com.example.shopapp.databinding.FragmentProfileBinding
 import com.example.shopapp.featureModules.authModule.di.DaggerAuthComponent
 import com.example.shopapp.featureModules.authModule.models.UserModel
 import com.example.shopapp.featureModules.authModule.ui.activities.LoginActivity
+import com.example.shopapp.featureModules.productModule.ui.activities.AddProductActivity
 import com.example.shopapp.utility.DataStoreManager
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.first
@@ -51,6 +52,10 @@ class ProfileFragment : Fragment() {
 
             username.text = user.userName
             email.text = user.email
+
+            noneCardview.setOnClickListener {
+                startActivity(Intent(requireActivity(),AddProductActivity::class.java))
+            }
 
             logoutCardview.setOnClickListener {
                 lifecycleScope.launchWhenStarted{

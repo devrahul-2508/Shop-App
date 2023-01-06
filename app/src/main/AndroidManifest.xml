@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:name=".application.ShopApplication"
@@ -16,6 +18,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShopApp"
         tools:targetApi="31">
+        <activity
+            android:name=".featureModules.productModule.ui.activities.AddProductActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".featureModules.productModule.ui.activities.SearchActivity"
             android:exported="false">
