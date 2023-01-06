@@ -27,4 +27,10 @@ class ProductViewModel: ViewModel() {
         productRepository.getProduct(id,successData, errorData)
         return successData
     }
+
+    fun addProduct(title:String,desc:String,categories:String,size:String,color:String,price:String,imagePath:String):LiveData<ApiResponseProductModel>{
+        val successData: MutableLiveData<ApiResponseProductModel> = MutableLiveData()
+        productRepository.addNewProduct(title,desc,categories,size,color,price,imagePath,successData,errorData)
+        return successData
+    }
 }
