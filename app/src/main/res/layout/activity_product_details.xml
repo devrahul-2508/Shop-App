@@ -63,14 +63,14 @@
             android:layout_height="200dp"
             android:layout_marginTop="50dp"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/mac"/>
+            tools:src="@drawable/mac"/>
 
         <TextView
             android:id="@+id/product_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/view"
-            android:text="Macbook Air"
+            tools:text="Macbook Air"
             android:textSize="25sp"
             android:textColor="@color/deepblue"
             android:textStyle="bold"
@@ -82,7 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/product_title"
-            android:text="MacBook Air with M1 is an incredibly portable laptop — it’s nimble and quick, with a silent, fanless design and a beautiful Retina display. Thanks to its slim profile and all‑day battery life, this Air moves at the speed of lightness.Apple silicon integrates the CPU, GPU, Neural Engine, I/O and so much more onto a single tiny chip. Packed with an astonishing 16 billion transistors, M1 delivers exceptional performance, custom technologies and unbelievable power efficiency — a major breakthrough for Macekfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff."
+            tools:text="MacBook Air with M1 is an incredibly portable laptop — it’s nimble and quick, with a silent, fanless design and a beautiful Retina display. Thanks to its slim profile and all‑day battery life, this Air moves at the speed of lightness.Apple silicon integrates the CPU, GPU, Neural Engine, I/O and so much more onto a single tiny chip. Packed with an astonishing 16 billion transistors, M1 delivers exceptional performance, custom technologies and unbelievable power efficiency — a major breakthrough for Macekfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff."
             android:layout_marginHorizontal="10dp"
             android:fontFamily="@font/poppins"/>
 
@@ -152,7 +152,7 @@
                 android:id="@+id/product_price_cart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="$500.0"
+                tools:text="$500.0"
                 android:layout_marginStart="10dp"
                 android:layout_weight="1"
                 app:layout_constraintTop_toBottomOf="@id/product_description"
