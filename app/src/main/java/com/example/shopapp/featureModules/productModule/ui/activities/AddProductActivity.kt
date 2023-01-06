@@ -2,9 +2,12 @@ package com.example.shopapp.featureModules.productModule.ui.activities
 
 import android.Manifest
 import android.app.Activity
+import android.app.Dialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
@@ -22,6 +25,7 @@ import com.applex.utsavadmin.utility.utilManager.RealPathUtil
 import com.example.shopapp.R
 import com.example.shopapp.application.ShopApplication
 import com.example.shopapp.databinding.ActivityAddProductBinding
+import com.example.shopapp.databinding.ProgressDialogBinding
 import com.example.shopapp.featureModules.productModule.di.DaggerProductComponent
 import com.example.shopapp.featureModules.productModule.viewModels.ProductViewModel
 import java.io.IOException
@@ -37,6 +41,7 @@ class AddProductActivity : AppCompatActivity() {
     private var price: String = ""
     private var colour: String = ""
     private var size: String = ""
+    private var progressDialog : Dialog?=null
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,7 +70,7 @@ class AddProductActivity : AppCompatActivity() {
                 colour =productColor.text.toString()
                 size = productSize.text.toString()
 
-
+                showProgressBarDialog()
                 addProduct()
             }
         }
@@ -153,6 +158,7 @@ class AddProductActivity : AppCompatActivity() {
     private fun addProduct(){
         productViewModel.addProduct(title,description,categories,size,colour,price,imagePath).observe(this){
             if (it.success){
+                progressDialog!!.dismiss()
                 Toast.makeText(this,"Successfully added Product",Toast.LENGTH_SHORT).show()
                 finish()
             }
@@ -162,6 +168,17 @@ class AddProductActivity : AppCompatActivity() {
                 Log.d("BAM",it.message.toString())
             }
         }
+    }
+
+    private fun showProgressBarDialog(){
+        progressDialog = Dialog(this)
+        val binding = ProgressDialogBinding.inflate(layoutInflater)
+        progressDialog!!.setContentView(binding.root)
+        progressDialog!!.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        binding.cpTitle.text= "Adding Your Product"
+
+        progressDialog!!.show()
     }
 
     companion object {
