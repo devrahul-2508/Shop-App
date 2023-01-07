@@ -85,6 +85,9 @@ dependencies {
 //
     implementation 'com.github.baoyachi:StepView:1.9'
 
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
+
 
 
 }

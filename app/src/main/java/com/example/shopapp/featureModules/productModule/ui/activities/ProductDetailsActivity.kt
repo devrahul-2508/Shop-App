@@ -2,6 +2,7 @@ package com.example.shopapp.featureModules.productModule.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -38,6 +39,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         productID = intent.getStringExtra(Constants.INTENT_PARAMS.PRODUCT_ID).toString()
 
         getProductDetails()
+        binding.cpPbar.visibility = View.VISIBLE
 
         binding.btnAddToCart.setOnClickListener {
             addToCart()
@@ -53,6 +55,14 @@ class ProductDetailsActivity : AppCompatActivity() {
             productViewModel.getProductById(productID).observe(this){
                 if (it.success){
                     with(binding){
+                        productTitle.visibility = View.VISIBLE
+                        productDescription.visibility = View.VISIBLE
+                        productPriceCart.visibility = View.VISIBLE
+                        productImage.visibility = View.VISIBLE
+                        btnAddToCart.visibility = View.VISIBLE
+                        reviewLayout.visibility = View.VISIBLE
+                        cpPbar.visibility = View.GONE
+
                         it.response?.let { product ->
                             productTitle.text = product.title
                             productDescription.text = product.desc

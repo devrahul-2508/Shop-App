@@ -63,6 +63,7 @@ class HomeFragment : Fragment() {
         binding.productRecycler.layoutManager = GridLayoutManager(requireContext(),2,VERTICAL,false)
         binding.productRecycler.adapter = adapter
 
+        //binding.shimmerLayout.visibility = View.VISIBLE
         //getProducts()
         getMainModels()
 
@@ -85,9 +86,12 @@ class HomeFragment : Fragment() {
         mainHomeAdapter = MainHomeAdapter(requireActivity())
         binding.productRecycler.layoutManager = LinearLayoutManager(requireContext())
         binding.productRecycler.adapter = mainHomeAdapter
+        //binding.shimmerLayout.visibility = View.GONE
+
         mainViewModel.mainModels().observe(requireActivity()){
            lifecycleScope.launchWhenStarted {
                mainHomeAdapter.submitData(it)
+
            }
         }
     }
