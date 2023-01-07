@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        >
+        app:cardElevation="0dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -40,9 +41,10 @@
                     android:id="@+id/product_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
                     android:text="Macbook Air"
                     android:textColor="@color/deepblue"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
 
@@ -51,51 +53,66 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:fontFamily="@font/poppins"
+                    android:textSize="12sp"
                     android:maxLines="2"
+
                     android:text="MacBook Air with M1 is an incredibly portable laptop — it’s nimble and quick, with a silent, fanless design and a beautiful Retina display. Thanks to its slim profile and all‑day battery life, this Air moves at the speed of lightness." />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/product_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
                         android:text="$500"
                         android:textColor="@color/deepblue"
-                        android:textSize="20sp"
+                        android:textSize="18sp"
+
                         android:textStyle="bold" />
 
-                    <ImageView
-                        android:id="@+id/minus_switch"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/minus"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginStart="50dp"/>
-
-                    <TextView
-                        android:id="@+id/product_quantity"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="2"
-                        android:textColor="@color/deepblue"
-                        android:textSize="20sp"
-                        android:layout_marginStart="10dp"
-                        android:textStyle="bold" />
+                        android:gravity="end">
 
-                    <ImageView
-                        android:id="@+id/plus_switch"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/plus"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginStart="10dp"
-                        />
+                        <ImageView
+                            android:id="@+id/minus_switch"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="4dp"
+                            android:src="@drawable/minus" />
 
+                        <TextView
+                            android:id="@+id/product_quantity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:fontFamily="@font/poppins"
+                            android:text="2"
+
+                            android:textColor="@color/deepblue"
+
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/plus_switch"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="10dp"
+                            android:src="@drawable/plus"
+
+                            />
+
+                    </LinearLayout>
 
 
                 </LinearLayout>

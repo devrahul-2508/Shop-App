@@ -15,12 +15,19 @@ import com.example.shopapp.featureModules.orderModule.di.DaggerOrderComponent
 import com.example.shopapp.featureModules.orderModule.ui.adapters.OrderProductAdapter
 import com.example.shopapp.featureModules.orderModule.viewModels.OrderViewModel
 import com.example.shopapp.utility.Constants
+import com.example.shopapp.utility.DataStoreManager
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
+import javax.inject.Inject
 
 class OrdersActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityOrdersBinding
     private lateinit var orderViewModel: OrderViewModel
     private var orderId: String = ""
+
+    @Inject
+    lateinit var dataStoreManager: DataStoreManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_orders)
@@ -65,6 +72,12 @@ class OrdersActivity : AppCompatActivity() {
                 val adapter =OrderProductAdapter(it.response!!.products,this)
                 binding.productsRecycler.layoutManager= LinearLayoutManager(this)
                 binding.productsRecycler.adapter = adapter
+                binding.orderId.text = "Order Id:"+it.response.orderId
+                val user = runBlocking { dataStoreManager.user.first() }
+                binding.username.text = user.userName
+                binding.userAddress.text = it.response.address
+                binding.sellingPrice.text = (it.response.amount?.minus(50)).toString()
+                binding.totalPrice.text = it.response.amount.toString()
             }
 
         }

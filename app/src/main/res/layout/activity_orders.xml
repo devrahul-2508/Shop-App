@@ -73,6 +73,20 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/order_id" />
 
+            <TextView
+                android:id="@+id/status_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/poppins"
+                android:text="Track your shipment"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/productsRecycler" />
+
+
+
 
             <com.baoyachi.stepview.VerticalStepView
                 android:id="@+id/stepView"
@@ -83,7 +97,7 @@
                 android:layout_marginBottom="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/productsRecycler" />
+                app:layout_constraintTop_toBottomOf="@id/status_label" />
 
             <TextView
                 android:id="@+id/shipping_label"
@@ -122,7 +136,7 @@
 
 
             <TextView
-                android:id="@+id/user_details"
+                android:id="@+id/user_address"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
@@ -130,7 +144,6 @@
                 android:fontFamily="@font/poppins"
                 android:text="Haldia Durgachak Colony Block -F Plot No 77"
                 android:textColor="@color/black"
-
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/username"
@@ -149,7 +162,7 @@
 
                 android:textSize="15sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/user_details" />
+                app:layout_constraintTop_toBottomOf="@id/user_address" />
 
 
             <TextView

@@ -11,7 +11,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Deliver To"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="15dp"
             android:textStyle="bold"
@@ -23,7 +23,7 @@
             android:layout_height="match_parent"
             android:text="Rahul Roy"
             android:layout_marginStart="10dp"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             android:fontFamily="@font/poppins"
             android:textColor="@color/black"/>
@@ -68,7 +68,7 @@
                 android:fontFamily="@font/poppins"
                 android:textStyle="bold"
                 android:layoutDirection="rtl"
-                android:textSize="18sp"/>
+                android:textSize="12sp"/>
 
             <View
                 android:layout_width="fill_parent"
@@ -85,7 +85,7 @@
                 android:layout_marginTop="5dp"
                 android:textStyle="bold"
                 android:layoutDirection="rtl"
-                android:textSize="18sp"/>
+                android:textSize="12sp"/>
 
 
         </RadioGroup>
@@ -97,7 +97,7 @@
             android:layout_marginHorizontal="20dp"
             android:text="Proceed to Checkout"
             android:backgroundTint="@color/black"
-            android:textSize="15sp"
+            android:textSize="12sp"
             android:background="@drawable/button_background"
             android:textColor="@color/white"
             android:layout_marginBottom="20dp"
