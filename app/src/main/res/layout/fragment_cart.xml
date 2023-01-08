@@ -43,6 +43,19 @@
             tools:listitem="@layout/item_cart_product_layout"
             android:layout_marginTop="10dp"/>
 
+        <ProgressBar
+            android:id="@+id/cp_pbar"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:indeterminateTint="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/cart_empty"
             android:layout_width="wrap_content"
@@ -77,6 +90,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:weightSum="4"
+            android:visibility="gone"
             android:padding="10dp"
             android:background="@color/white"
             android:elevation="20dp"

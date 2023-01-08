@@ -80,10 +80,13 @@ class CartFragment : Fragment() {
         binding.btnPlaceOrder.setOnClickListener {
             showCheckoutBottomSheet()
         }
+        binding.cpPbar.visibility = View.VISIBLE
 
     }
 
     private fun buildRecyclerView() {
+        binding.cpPbar.visibility = View.VISIBLE
+
         cartViewModel.getCart().observe(requireActivity()) {
             if (it.success) {
                 if (it.response != null) {
@@ -108,6 +111,7 @@ class CartFragment : Fragment() {
                         binding.productRecycler.visibility = View.VISIBLE
                         binding.cartEmpty.visibility = View.GONE
                         binding.shopNowBtn.visibility = View.GONE
+                        binding.cpPbar.visibility = View.GONE
                         binding.checkoutLayout.visibility = View.VISIBLE
                         adapter = CartAdapter(it.response.products, requireContext())
                         binding.productRecycler.layoutManager =
@@ -122,7 +126,7 @@ class CartFragment : Fragment() {
 
                                 Handler(Looper.getMainLooper()).postDelayed({
                                     buildRecyclerView()
-                                }, 300)
+                                }, 800)
 
                             }
 
@@ -135,7 +139,7 @@ class CartFragment : Fragment() {
                                 modifyCart(cartProductModel)
                                 Handler(Looper.getMainLooper()).postDelayed({
                                     buildRecyclerView()
-                                }, 300)
+                                }, 800)
 
                             }
 
@@ -146,12 +150,16 @@ class CartFragment : Fragment() {
                         binding.productRecycler.visibility = View.GONE
                         binding.cartEmpty.visibility = View.VISIBLE
                         binding.shopNowBtn.visibility = View.VISIBLE
+                        binding.cpPbar.visibility = View.GONE
+
                         binding.checkoutLayout.visibility = View.GONE
                     }
                 } else {
                     binding.productRecycler.visibility = View.GONE
                     binding.cartEmpty.visibility = View.VISIBLE
                     binding.shopNowBtn.visibility = View.VISIBLE
+                    binding.cpPbar.visibility = View.GONE
+
                     binding.checkoutLayout.visibility = View.GONE
                 }
             }
@@ -159,6 +167,8 @@ class CartFragment : Fragment() {
                 binding.productRecycler.visibility = View.GONE
                 binding.cartEmpty.visibility = View.VISIBLE
                 binding.shopNowBtn.visibility = View.VISIBLE
+                binding.cpPbar.visibility = View.GONE
+
                 binding.checkoutLayout.visibility = View.GONE
             }
         }
