@@ -1,5 +1,6 @@
 package com.example.shopapp.featureModules.cartModule.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -19,12 +20,14 @@ import com.example.shopapp.databinding.CheckoutLayoutBinding
 import com.example.shopapp.databinding.FragmentCartBinding
 import com.example.shopapp.featureModules.cartModule.di.DaggerCartComponent
 import com.example.shopapp.featureModules.cartModule.models.CartProductModel
+import com.example.shopapp.featureModules.cartModule.ui.PaymentActivity
 import com.example.shopapp.featureModules.cartModule.ui.adapters.CartAdapter
 import com.example.shopapp.featureModules.cartModule.viewModels.CartViewModel
 import com.example.shopapp.featureModules.orderModule.di.DaggerOrderComponent
 import com.example.shopapp.featureModules.orderModule.models.OrderModel
 import com.example.shopapp.featureModules.orderModule.models.OrderProductModel
 import com.example.shopapp.featureModules.orderModule.viewModels.OrderViewModel
+import com.example.shopapp.utility.Constants
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 
@@ -38,6 +41,7 @@ class CartFragment : Fragment() {
     private var products: List<OrderProductModel> = arrayListOf()
     private var amount: Int=0
     private var address: String = ""
+    private var isOnlinePayment: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -178,10 +182,10 @@ class CartFragment : Fragment() {
             override fun onCheckedChanged(p0: RadioGroup?, p1: Int) {
                when(p1){
                    R.id.online_payment->{
-                       Toast.makeText(requireContext(),"Online Payment",Toast.LENGTH_SHORT).show()
+                       isOnlinePayment = true
                    }
                    R.id.cod->{
-                       Toast.makeText(requireContext(),"COD",Toast.LENGTH_SHORT).show()
+                       isOnlinePayment = false
 
                    }
                }
@@ -195,7 +199,7 @@ class CartFragment : Fragment() {
             bottomSheetDialog.dismiss()
             Handler(Looper.getMainLooper()).postDelayed({
                 buildRecyclerView()
-            }, 300)
+            }, 500)
         }
 
         bottomSheetDialog.show()
@@ -207,15 +211,25 @@ class CartFragment : Fragment() {
             amount = amount,
             address = address
         )
-        orderViewModel.placeOrder(orderModel).observe(requireActivity()){
-            if (it.success){
-                Toast.makeText(requireContext(),"Successfully placed order",Toast.LENGTH_SHORT).show()
-            }
-            else{
-                Toast.makeText(requireContext(),it.message,Toast.LENGTH_SHORT).show()
 
+        if (isOnlinePayment){
+            val intent = Intent(requireActivity(),PaymentActivity::class.java)
+            intent.putExtra(Constants.INTENT_PARAMS.ORDER_OBJ,orderModel)
+            startActivity(intent)
+        }
+        else{
+            orderViewModel.placeOrder(orderModel).observe(requireActivity()){
+                if (it.success){
+                    Toast.makeText(requireContext(),"Successfully placed order",Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    Toast.makeText(requireContext(),it.message,Toast.LENGTH_SHORT).show()
+
+                }
             }
         }
+
+
     }
 
 

@@ -19,7 +19,7 @@
         android:theme="@style/Theme.ShopApp"
         tools:targetApi="31">
         <activity
-            android:name=".PaymentActivity"
+            android:name=".featureModules.cartModule.ui.PaymentActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
