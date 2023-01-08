@@ -24,6 +24,9 @@ data class OrderModel(
     @SerializedName("status")
     @Expose
     val status: String?=null,
+    @SerializedName("modeOfPayment")
+    @Expose
+    val modeOfPayment: String?=null,
     @SerializedName("createdAt")
     @Expose
     val createdAt: String?=null,

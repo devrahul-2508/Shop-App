@@ -28,7 +28,11 @@ import com.example.shopapp.featureModules.orderModule.models.OrderProductModel
 import com.example.shopapp.featureModules.orderModule.ui.activities.OrderSuccessfulActivity
 import com.example.shopapp.featureModules.orderModule.viewModels.OrderViewModel
 import com.example.shopapp.utility.Constants
+import com.example.shopapp.utility.DataStoreManager
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
+import javax.inject.Inject
 
 
 class CartFragment : Fragment() {
@@ -42,6 +46,9 @@ class CartFragment : Fragment() {
     private var amount: Int=0
     private var address: String = ""
     private var isOnlinePayment: Boolean = false
+
+    @Inject
+    lateinit var dataStoreManager: DataStoreManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -176,7 +183,8 @@ class CartFragment : Fragment() {
         val binding = CheckoutLayoutBinding.inflate(layoutInflater)
         bottomSheetDialog.setContentView(binding.root)
 
-
+        val user = runBlocking { dataStoreManager.user.first() }
+        binding.username.text = user.userName
 
         binding.paymentRadioGroup.setOnCheckedChangeListener(object : RadioGroup.OnCheckedChangeListener{
             override fun onCheckedChanged(p0: RadioGroup?, p1: Int) {
@@ -204,18 +212,27 @@ class CartFragment : Fragment() {
     }
 
     private fun placeOrder(){
-        val orderModel = OrderModel(
-            products = products,
-            amount = amount,
-            address = address
-        )
+
+
 
         if (isOnlinePayment){
+            val orderModel = OrderModel(
+                products = products,
+                amount = amount,
+                address = address,
+                modeOfPayment = "Online"
+            )
             val intent = Intent(requireActivity(), PaymentActivity::class.java)
             intent.putExtra(Constants.INTENT_PARAMS.ORDER_OBJ,orderModel)
             startActivity(intent)
         }
         else{
+            val orderModel = OrderModel(
+                products = products,
+                amount = amount,
+                address = address,
+                modeOfPayment = "Cash on delivery"
+            )
             orderViewModel.placeOrder(orderModel).observe(requireActivity()){
                 if (it.success){
                     val intent = Intent(requireActivity(),OrderSuccessfulActivity::class.java)

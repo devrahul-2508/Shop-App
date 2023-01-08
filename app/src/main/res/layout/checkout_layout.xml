@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,9 +20,10 @@
             android:textColor="@color/black"/>
 
         <TextView
+            android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Rahul Roy"
+            tools:text="Rahul Roy"
             android:layout_marginStart="10dp"
             android:textSize="16sp"
             android:textStyle="bold"

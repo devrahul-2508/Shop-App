@@ -39,7 +39,6 @@ class OrdersActivity : AppCompatActivity() {
             it.inject(orderViewModel)
         }
         orderId = intent.getStringExtra(Constants.INTENT_PARAMS.ORDER_ID).toString()
-        buildStepView()
 
 
 
@@ -47,13 +46,13 @@ class OrdersActivity : AppCompatActivity() {
 
     }
 
-    private fun buildStepView(){
+    private fun buildStepView(index:Int){
         val steps: List<String> = arrayListOf("Pending","Order Confirmed","Out for delivery","Delivered")
 
         binding.stepView
             .setStepViewTexts(steps)//总步骤
             .setTextSize(13)//set textSize
-            .setStepsViewIndicatorComplectingPosition(2)
+            .setStepsViewIndicatorComplectingPosition(index)
             .reverseDraw(false)
             .setLinePaddingProportion(1.5f)
             .setStepsViewIndicatorCompletedLineColor(ContextCompat.getColor(this, R.color.green_selected))//设置StepsViewIndicator完成线的颜色
@@ -76,8 +75,21 @@ class OrdersActivity : AppCompatActivity() {
                 val user = runBlocking { dataStoreManager.user.first() }
                 binding.username.text = user.userName
                 binding.userAddress.text = it.response.address
-                binding.sellingPrice.text = (it.response.amount?.minus(50)).toString()
-                binding.totalPrice.text = it.response.amount.toString()
+                binding.sellingPrice.text = "$${it.response.amount?.minus(50)}"
+                binding.totalPrice.text = "$${it.response.amount}"
+
+                when(it.response.status){
+                    "Pending"-> buildStepView(0)
+                    "Order Confirmed"-> buildStepView(1)
+                    "Out For Delivery"-> buildStepView(2)
+                    "Delivered"-> buildStepView(3)
+
+                }
+
+
+
+
+                binding.modeOfPayment.text = if (it.response.modeOfPayment == "Online") "•Online: $${it.response.amount.toString()}" else "•Cash on Delivery: $${it.response.amount.toString()}"
             }
 
         }
