@@ -6,6 +6,8 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -169,6 +171,23 @@ class CartFragment : Fragment() {
         val bottomSheetDialog = BottomSheetDialog(requireActivity())
         val binding = CheckoutLayoutBinding.inflate(layoutInflater)
         bottomSheetDialog.setContentView(binding.root)
+
+
+
+        binding.paymentRadioGroup.setOnCheckedChangeListener(object : RadioGroup.OnCheckedChangeListener{
+            override fun onCheckedChanged(p0: RadioGroup?, p1: Int) {
+               when(p1){
+                   R.id.online_payment->{
+                       Toast.makeText(requireContext(),"Online Payment",Toast.LENGTH_SHORT).show()
+                   }
+                   R.id.cod->{
+                       Toast.makeText(requireContext(),"COD",Toast.LENGTH_SHORT).show()
+
+                   }
+               }
+            }
+
+        })
 
         binding.btnProceed.setOnClickListener {
             address = binding.address.text.toString()

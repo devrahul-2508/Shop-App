@@ -54,6 +54,7 @@
             android:textColor="@color/black"/>
 
         <RadioGroup
+            android:id="@+id/payment_radio_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
@@ -61,6 +62,7 @@
             >
 
             <RadioButton
+                android:id="@+id/online_payment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Online Payment"
@@ -77,6 +79,7 @@
                 android:background="#E9E9E9" />
 
             <RadioButton
+                android:id="@+id/cod"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Cash On Delivery"
