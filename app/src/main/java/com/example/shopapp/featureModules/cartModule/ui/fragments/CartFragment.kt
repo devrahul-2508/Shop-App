@@ -197,9 +197,7 @@ class CartFragment : Fragment() {
             address = binding.address.text.toString()
             placeOrder()
             bottomSheetDialog.dismiss()
-            Handler(Looper.getMainLooper()).postDelayed({
-                buildRecyclerView()
-            }, 500)
+
         }
 
         bottomSheetDialog.show()
@@ -230,6 +228,11 @@ class CartFragment : Fragment() {
         }
 
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        buildRecyclerView()
     }
 
 
