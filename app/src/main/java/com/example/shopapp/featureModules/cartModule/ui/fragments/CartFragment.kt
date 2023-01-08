@@ -7,7 +7,6 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -20,12 +19,13 @@ import com.example.shopapp.databinding.CheckoutLayoutBinding
 import com.example.shopapp.databinding.FragmentCartBinding
 import com.example.shopapp.featureModules.cartModule.di.DaggerCartComponent
 import com.example.shopapp.featureModules.cartModule.models.CartProductModel
-import com.example.shopapp.featureModules.cartModule.ui.PaymentActivity
+import com.example.shopapp.featureModules.orderModule.ui.activities.PaymentActivity
 import com.example.shopapp.featureModules.cartModule.ui.adapters.CartAdapter
 import com.example.shopapp.featureModules.cartModule.viewModels.CartViewModel
 import com.example.shopapp.featureModules.orderModule.di.DaggerOrderComponent
 import com.example.shopapp.featureModules.orderModule.models.OrderModel
 import com.example.shopapp.featureModules.orderModule.models.OrderProductModel
+import com.example.shopapp.featureModules.orderModule.ui.activities.OrderSuccessfulActivity
 import com.example.shopapp.featureModules.orderModule.viewModels.OrderViewModel
 import com.example.shopapp.utility.Constants
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -211,13 +211,16 @@ class CartFragment : Fragment() {
         )
 
         if (isOnlinePayment){
-            val intent = Intent(requireActivity(),PaymentActivity::class.java)
+            val intent = Intent(requireActivity(), PaymentActivity::class.java)
             intent.putExtra(Constants.INTENT_PARAMS.ORDER_OBJ,orderModel)
             startActivity(intent)
         }
         else{
             orderViewModel.placeOrder(orderModel).observe(requireActivity()){
                 if (it.success){
+                    val intent = Intent(requireActivity(),OrderSuccessfulActivity::class.java)
+                    intent.putExtra(Constants.INTENT_PARAMS.ORDER_ID,it.response?.orderId)
+                    startActivity(intent)
                     Toast.makeText(requireContext(),"Successfully placed order",Toast.LENGTH_SHORT).show()
                 }
                 else{
