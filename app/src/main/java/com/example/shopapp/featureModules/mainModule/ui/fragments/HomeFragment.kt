@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
@@ -23,6 +24,8 @@ import com.example.shopapp.featureModules.productModule.di.DaggerProductComponen
 import com.example.shopapp.featureModules.productModule.ui.activities.SearchActivity
 import com.example.shopapp.featureModules.productModule.ui.adapters.ProductsPagingAdapter
 import com.example.shopapp.featureModules.productModule.viewModels.ProductViewModel
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 
 
 class HomeFragment : Fragment() {
@@ -89,8 +92,19 @@ class HomeFragment : Fragment() {
         //binding.shimmerLayout.visibility = View.GONE
 
         mainViewModel.mainModels().observe(requireActivity()){
+
+            mainHomeAdapter.addLoadStateListener {
+                if(it.refresh is LoadState.Loading)
+                    binding.cpPbar.visibility = View.VISIBLE
+                else if(it.refresh is LoadState.NotLoading)
+                    binding.cpPbar.visibility = View.GONE
+
+            }
+
            lifecycleScope.launchWhenStarted {
                mainHomeAdapter.submitData(it)
+
+
 
            }
         }

@@ -123,10 +123,10 @@ class CartFragment : Fragment() {
                             override fun onPlusClicked(cartProductModel: CartProductModel) {
                                 cartProductModel.quantity = 1
                                 modifyCart(cartProductModel)
+                                binding.cpPbar.visibility = View.VISIBLE
 
-                                Handler(Looper.getMainLooper()).postDelayed({
-                                    buildRecyclerView()
-                                }, 800)
+
+
 
                             }
 
@@ -137,9 +137,8 @@ class CartFragment : Fragment() {
                             override fun onMinusClicked(cartProductModel: CartProductModel) {
                                 cartProductModel.quantity = -1
                                 modifyCart(cartProductModel)
-                                Handler(Looper.getMainLooper()).postDelayed({
-                                    buildRecyclerView()
-                                }, 800)
+                                binding.cpPbar.visibility = View.VISIBLE
+
 
                             }
 
@@ -178,11 +177,14 @@ class CartFragment : Fragment() {
         cartViewModel.modifyCart(cartProductModel).observe(this){
             if (it.success){
                 Toast.makeText(requireContext(),"Cart Modified Successfully",Toast.LENGTH_SHORT).show()
+                buildRecyclerView()
+                binding.cpPbar.visibility = View.GONE
 
 
             }
             else{
                 Toast.makeText(requireContext(),"Some error Occurred",Toast.LENGTH_SHORT).show()
+                binding.cpPbar.visibility = View.GONE
 
             }
         }

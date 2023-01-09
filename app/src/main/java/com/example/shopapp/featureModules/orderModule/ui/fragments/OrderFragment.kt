@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.shopapp.R
 import com.example.shopapp.application.ShopApplication
@@ -52,6 +53,15 @@ class OrderFragment : Fragment() {
         binding.orderRecycler.adapter = adapter
 
         orderViewModel.fetchAllOrders().observe(requireActivity()){
+
+          adapter.addLoadStateListener {
+                if(it.refresh is LoadState.Loading)
+                    binding.cpPbar.visibility = View.VISIBLE
+                else if(it.refresh is LoadState.NotLoading)
+                    binding.cpPbar.visibility = View.GONE
+
+            }
+
             lifecycleScope.launchWhenStarted {
                 adapter.submitData(it)
 
