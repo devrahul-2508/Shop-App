@@ -26,4 +26,5 @@
     <color name="pink">#fde1e6</color>
     <color name="product_gray">#d7d8e1</color>
     <color name="violet">#dcd1fc</color>
+    <color name="chip_colour">#e9e9f0</color>
 </resources>

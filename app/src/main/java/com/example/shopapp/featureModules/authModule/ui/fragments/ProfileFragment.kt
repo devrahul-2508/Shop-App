@@ -14,6 +14,7 @@ import com.example.shopapp.databinding.FragmentProfileBinding
 import com.example.shopapp.featureModules.authModule.di.DaggerAuthComponent
 import com.example.shopapp.featureModules.authModule.models.UserModel
 import com.example.shopapp.featureModules.authModule.ui.activities.LoginActivity
+import com.example.shopapp.featureModules.orderModule.ui.activities.StatsActivity
 import com.example.shopapp.featureModules.productModule.ui.activities.AddProductActivity
 import com.example.shopapp.utility.DataStoreManager
 import kotlinx.coroutines.*
@@ -53,9 +54,24 @@ class ProfileFragment : Fragment() {
             username.text = user.userName
             email.text = user.email
 
-            noneCardview.setOnClickListener {
+            if (user.isAdmin!!){
+                addproductCardview.visibility = View.VISIBLE
+                statsCardview.visibility = View.VISIBLE
+            }
+            else{
+                addproductCardview.visibility = View.GONE
+                statsCardview.visibility = View.GONE
+            }
+
+            addproductCardview.setOnClickListener {
                 startActivity(Intent(requireActivity(),AddProductActivity::class.java))
             }
+
+            statsCardview.setOnClickListener {
+                startActivity(Intent(requireActivity(),StatsActivity::class.java))
+            }
+
+
 
             logoutCardview.setOnClickListener {
                 lifecycleScope.launchWhenStarted{

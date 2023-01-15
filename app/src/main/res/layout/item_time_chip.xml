@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/chip_colour"
+        android:layout_marginHorizontal="10dp"
+        app:cardCornerRadius="20dp"
+        >
+
+        <TextView
+            android:id="@+id/time_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Last 7 days"
+            android:textSize="12sp"
+            android:layout_marginHorizontal="5dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins"
+            android:padding="10dp"/>
+
+
+    </androidx.cardview.widget.CardView>
+
+</layout>
