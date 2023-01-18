@@ -8,7 +8,9 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.shopapp.featureModules.authModule.repositories.AuthRepository
 import com.example.shopapp.featureModules.orderModule.models.OrderModel
+import com.example.shopapp.featureModules.orderModule.models.StatsModel
 import com.example.shopapp.featureModules.orderModule.models.apiResponseModels.ApiResponseOrderModel
+import com.example.shopapp.featureModules.orderModule.models.apiResponseModels.ApiResponseStatsModel
 import com.example.shopapp.featureModules.orderModule.repositories.OrderRepository
 import javax.inject.Inject
 
@@ -32,6 +34,11 @@ class OrderViewModel: ViewModel() {
     fun fetchOrder(orderId: String): LiveData<ApiResponseOrderModel>{
         val successData: MutableLiveData<ApiResponseOrderModel> = MutableLiveData()
         orderRepository.getOrder(orderId,successData,errorData)
+        return successData
+    }
+    fun fetchStats(timeline: String): LiveData<ApiResponseStatsModel>{
+        val successData: MutableLiveData<ApiResponseStatsModel> = MutableLiveData()
+        orderRepository.fetchStats(timeline,successData,errorData)
         return successData
     }
 

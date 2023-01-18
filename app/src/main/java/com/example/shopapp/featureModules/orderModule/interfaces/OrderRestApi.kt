@@ -1,8 +1,10 @@
 package com.example.shopapp.featureModules.orderModule.interfaces
 
 import com.example.shopapp.featureModules.orderModule.models.OrderModel
+import com.example.shopapp.featureModules.orderModule.models.StatsModel
 import com.example.shopapp.featureModules.orderModule.models.apiResponseModels.ApiResponseOrderModel
 import com.example.shopapp.featureModules.orderModule.models.apiResponseModels.ApiResponseOrderModels
+import com.example.shopapp.featureModules.orderModule.models.apiResponseModels.ApiResponseStatsModel
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -23,5 +25,11 @@ interface OrderRestApi {
     fun getOrder(
         @Query("id") id: String
     ): Call<ApiResponseOrderModel>
+
+
+    @GET("api/orders/income")
+    fun getStats(
+        @Query("timeline") timeLine: String
+    ): Call<ApiResponseStatsModel>
 
 }

@@ -7,7 +7,9 @@ import androidx.paging.PagingConfig
 import androidx.paging.liveData
 import com.example.shopapp.featureModules.orderModule.interfaces.OrderRestApi
 import com.example.shopapp.featureModules.orderModule.models.OrderModel
+import com.example.shopapp.featureModules.orderModule.models.StatsModel
 import com.example.shopapp.featureModules.orderModule.models.apiResponseModels.ApiResponseOrderModel
+import com.example.shopapp.featureModules.orderModule.models.apiResponseModels.ApiResponseStatsModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -68,6 +70,23 @@ class OrderRepository(
             override fun onFailure(call: Call<ApiResponseOrderModel>, t: Throwable) {
                 error.value = t
 
+            }
+
+        })
+    }
+
+    fun fetchStats(
+        timeLine: String,
+        data: MutableLiveData<ApiResponseStatsModel>,
+        error: MutableLiveData<Throwable>
+    ){
+        orderRestApi.getStats(timeLine).enqueue(object : Callback<ApiResponseStatsModel>{
+            override fun onResponse(call: Call<ApiResponseStatsModel>, response: Response<ApiResponseStatsModel>) {
+                data.value = response.body()
+            }
+
+            override fun onFailure(call: Call<ApiResponseStatsModel>, t: Throwable) {
+                error.value = t
             }
 
         })
