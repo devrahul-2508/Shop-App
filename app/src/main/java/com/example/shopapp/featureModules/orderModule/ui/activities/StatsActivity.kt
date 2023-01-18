@@ -14,6 +14,7 @@ import com.example.shopapp.databinding.ActivityStatsBinding
 import com.example.shopapp.featureModules.orderModule.di.DaggerOrderComponent
 import com.example.shopapp.featureModules.orderModule.ui.adapters.ChipsAdapter
 import com.example.shopapp.featureModules.orderModule.viewModels.OrderViewModel
+import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
@@ -38,7 +39,14 @@ class StatsActivity : AppCompatActivity() {
         buildChipsRecycler()
 
 
-        getBarEntries()
+        getBarEntries("Last 7 days")
+
+        chipsAdapter.onClickListener(object : ChipsAdapter.OnClickListener{
+            override fun onClickListener(item: String) {
+                getBarEntries(item)
+            }
+
+        })
     }
 
     private fun buildChipsRecycler(){
@@ -47,7 +55,7 @@ class StatsActivity : AppCompatActivity() {
         binding.rvTime.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
         binding.rvTime.adapter=chipsAdapter
     }
-    private fun getBarEntries() {
+    private fun getBarEntries(item: String) {
         // creating a new array list
 
         // adding new entry to our array list with bar
@@ -56,7 +64,7 @@ class StatsActivity : AppCompatActivity() {
         binding.cpPbar.visibility = View.VISIBLE
         binding.idBarChart.visibility = View.GONE
 
-        orderViewModel.fetchStats("Last 15 days").observe(this){
+        orderViewModel.fetchStats(item).observe(this){
             Log.d("BAMSTATS",it.toString())
             if (it.success){
                 binding.cpPbar.visibility = View.GONE
@@ -103,6 +111,7 @@ class StatsActivity : AppCompatActivity() {
 
                     binding.idBarChart.axisLeft.isEnabled = false
                     binding.idBarChart.axisRight.isEnabled = false
+                    binding.idBarChart.animateY(1000)
                 }
             }
         }
