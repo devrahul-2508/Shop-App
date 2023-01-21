@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="20dp"
         android:layout_marginHorizontal="10dp"
         android:layout_marginVertical="10dp"
         app:cardBackgroundColor="@color/lightgray"
+        app:cardCornerRadius="20dp"
         app:cardElevation="20dp"
 
         >
@@ -21,58 +21,50 @@
             <RelativeLayout
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:layout_centerVertical="true">
+               >
 
 
                 <ImageView
                     android:id="@+id/img1"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:layout_marginTop="25dp"
                     android:layout_marginStart="20dp"
+                    android:layout_marginTop="25dp"
                     android:src="@drawable/mac" />
 
                 <ImageView
                     android:id="@+id/img2"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="25dp"
                     android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
                     android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="25dp"
                     android:src="@drawable/mac" />
 
 
             </RelativeLayout>
 
 
-
             <LinearLayout
+                android:id="@+id/linearl"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
                 android:layout_marginStart="180dp"
                 android:layout_marginTop="25dp"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/username"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="Rahul"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"/>
+
 
                 <TextView
                     android:id="@+id/order_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Order ID: 26104555225881774"
                     android:layout_marginEnd="3dp"
-                    android:textColor="@color/deepblue"
                     android:fontFamily="@font/poppins"
                     android:maxLines="2"
+                    android:text="Order ID: 26104555225881774"
+                    android:textColor="@color/deepblue"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -95,21 +87,36 @@
                     android:textStyle="bold" />
 
 
-
-
-
-
             </LinearLayout>
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/spinner_holder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/spinner_background"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/linearl"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="parent">
 
+                <Spinner
+                    android:id="@+id/status_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:paddingHorizontal="5dp"
+                    android:paddingVertical="15dp"
+                    android:textColor="@color/black"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                   />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         </RelativeLayout>
-
-
-
-
-
 
 
     </androidx.cardview.widget.CardView>

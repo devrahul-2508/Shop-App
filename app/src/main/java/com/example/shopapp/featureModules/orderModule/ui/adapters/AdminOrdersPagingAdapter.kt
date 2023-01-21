@@ -3,7 +3,10 @@ package com.example.shopapp.featureModules.orderModule.ui.adapters
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -61,6 +64,42 @@ class AdminOrdersPagingAdapter(private val context: Context): PagingDataAdapter<
             }
 
             productsTitle.text = orderTitle
+            val status : ArrayList<String> = arrayListOf("Pending","Order Confirmed","Out for delivery","Delivered")
+
+            val arrayAdapter = ArrayAdapter(
+                context,
+                android.R.layout.simple_spinner_item,
+                status
+            )
+
+            arrayAdapter.setDropDownViewResource(
+                android.R.layout
+                    .simple_spinner_dropdown_item);
+
+            statusSpinner.adapter = arrayAdapter
+
+            var isSpinnerTouched = false
+
+            statusSpinner.setOnTouchListener { _, _ ->
+                isSpinnerTouched = true
+                false
+            }
+
+            statusSpinner.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
+                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                    if (!isSpinnerTouched){
+                        return
+                    }
+                    else{
+
+                    }
+                }
+
+                override fun onNothingSelected(p0: AdapterView<*>?) {
+                    TODO("Not yet implemented")
+                }
+
+            }
         }
 
     }
