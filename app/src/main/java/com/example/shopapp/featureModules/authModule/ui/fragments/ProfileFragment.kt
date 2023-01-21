@@ -14,6 +14,7 @@ import com.example.shopapp.databinding.FragmentProfileBinding
 import com.example.shopapp.featureModules.authModule.di.DaggerAuthComponent
 import com.example.shopapp.featureModules.authModule.models.UserModel
 import com.example.shopapp.featureModules.authModule.ui.activities.LoginActivity
+import com.example.shopapp.featureModules.orderModule.ui.activities.AdminOrdersActivity
 import com.example.shopapp.featureModules.orderModule.ui.activities.StatsActivity
 import com.example.shopapp.featureModules.productModule.ui.activities.AddProductActivity
 import com.example.shopapp.utility.DataStoreManager
@@ -57,10 +58,12 @@ class ProfileFragment : Fragment() {
             if (user.isAdmin!!){
                 addproductCardview.visibility = View.VISIBLE
                 statsCardview.visibility = View.VISIBLE
+                ordersCardview.visibility = View.VISIBLE
             }
             else{
                 addproductCardview.visibility = View.GONE
                 statsCardview.visibility = View.GONE
+                ordersCardview.visibility = View.GONE
             }
 
             addproductCardview.setOnClickListener {
@@ -69,6 +72,11 @@ class ProfileFragment : Fragment() {
 
             statsCardview.setOnClickListener {
                 startActivity(Intent(requireActivity(),StatsActivity::class.java))
+            }
+
+            ordersCardview.setOnClickListener {
+                startActivity(Intent(requireActivity(),AdminOrdersActivity::class.java))
+
             }
 
 

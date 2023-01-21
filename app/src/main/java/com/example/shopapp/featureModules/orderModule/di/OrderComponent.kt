@@ -3,6 +3,7 @@ package com.example.shopapp.featureModules.orderModule.di
 import com.example.shopapp.di.AppComponent
 import com.example.shopapp.di.scopes.ApplicationScope
 import com.example.shopapp.featureModules.cartModule.ui.fragments.CartFragment
+import com.example.shopapp.featureModules.orderModule.ui.activities.AdminOrdersActivity
 import com.example.shopapp.featureModules.orderModule.ui.activities.OrdersActivity
 import com.example.shopapp.featureModules.orderModule.ui.activities.PaymentActivity
 import com.example.shopapp.featureModules.orderModule.ui.activities.StatsActivity
@@ -19,6 +20,7 @@ interface OrderComponent {
     fun inject(orderViewModel: OrderViewModel)
     fun inject(cartFragment: CartFragment)
     fun inject(ordersActivity: OrdersActivity)
+    fun inject(adminOrdersActivity: AdminOrdersActivity)
 
     fun inject(statsActivity: StatsActivity)
     fun inject(paymentActivity: PaymentActivity)

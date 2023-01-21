@@ -32,4 +32,10 @@ interface OrderRestApi {
         @Query("timeline") timeLine: String
     ): Call<ApiResponseStatsModel>
 
+
+    @GET("api/orders/find")
+    suspend fun getAdminOrders(
+        @Query("page") page: Int
+    ):ApiResponseOrderModels
+
 }

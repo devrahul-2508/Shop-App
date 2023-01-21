@@ -19,6 +19,9 @@
         android:theme="@style/Theme.ShopApp"
         tools:targetApi="31">
         <activity
+            android:name=".featureModules.orderModule.ui.activities.AdminOrdersActivity"
+            android:exported="false" />
+        <activity
             android:name=".featureModules.orderModule.ui.activities.StatsActivity"
             android:exported="false" />
         <activity

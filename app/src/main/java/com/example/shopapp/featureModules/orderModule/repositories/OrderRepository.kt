@@ -49,6 +49,11 @@ class OrderRepository(
         pagingSourceFactory = {OrderPagingSource(orderRestApi)}
     ).liveData
 
+    fun fetchAdminOrders()=Pager(
+        config = PagingConfig(pageSize = 4),
+        pagingSourceFactory = {AdminOrdersPagingSource(orderRestApi)}
+    ).liveData
+
     fun getOrder(
         orderId: String,
         data: MutableLiveData<ApiResponseOrderModel>,
