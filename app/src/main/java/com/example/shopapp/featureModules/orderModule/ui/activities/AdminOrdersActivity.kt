@@ -2,6 +2,7 @@ package com.example.shopapp.featureModules.orderModule.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -29,15 +30,18 @@ class AdminOrdersActivity : AppCompatActivity() {
             it.inject(orderViewModel)
         }
 
-        adapter = AdminOrdersPagingAdapter(this)
-        binding.orderRecycler.layoutManager = LinearLayoutManager(this)
-        binding.orderRecycler.adapter = adapter
+
 
         buildRecyclerView()
     }
 
     private fun buildRecyclerView(){
+
+        adapter = AdminOrdersPagingAdapter(this)
+        binding.orderRecycler.layoutManager = LinearLayoutManager(this)
+        binding.orderRecycler.adapter = adapter
         orderViewModel.fetchAdminOrders().observe(this){
+            Log.d("BAM",it.toString())
             lifecycleScope.launchWhenStarted {
                 adapter.submitData(it)
             }

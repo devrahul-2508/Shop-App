@@ -33,7 +33,7 @@ interface OrderRestApi {
     ): Call<ApiResponseStatsModel>
 
 
-    @GET("api/orders/find")
+    @GET("api/orders/all")
     suspend fun getAdminOrders(
         @Query("page") page: Int
     ):ApiResponseOrderModels
