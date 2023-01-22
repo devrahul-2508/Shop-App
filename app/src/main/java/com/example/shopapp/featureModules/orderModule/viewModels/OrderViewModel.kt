@@ -40,6 +40,12 @@ class OrderViewModel: ViewModel() {
         orderRepository.getOrder(orderId,successData,errorData)
         return successData
     }
+
+    fun updateAdminOrders(orderModel: OrderModel): LiveData<ApiResponseOrderModel>{
+        val successData: MutableLiveData<ApiResponseOrderModel> = MutableLiveData()
+        orderRepository.updateAdminOrders(orderModel,successData,errorData)
+        return successData
+    }
     fun fetchStats(timeline: String): LiveData<ApiResponseStatsModel>{
         val successData: MutableLiveData<ApiResponseStatsModel> = MutableLiveData()
         orderRepository.fetchStats(timeline,successData,errorData)

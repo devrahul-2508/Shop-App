@@ -6,10 +6,7 @@ import com.example.shopapp.featureModules.orderModule.models.apiResponseModels.A
 import com.example.shopapp.featureModules.orderModule.models.apiResponseModels.ApiResponseOrderModels
 import com.example.shopapp.featureModules.orderModule.models.apiResponseModels.ApiResponseStatsModel
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface OrderRestApi {
 
@@ -37,5 +34,10 @@ interface OrderRestApi {
     suspend fun getAdminOrders(
         @Query("page") page: Int
     ):ApiResponseOrderModels
+
+    @PUT("api/orders")
+    fun updateAdminOrders(
+        @Body orderModel: OrderModel
+    ): Call<ApiResponseOrderModel>
 
 }

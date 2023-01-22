@@ -80,6 +80,33 @@ class OrderRepository(
         })
     }
 
+    fun updateAdminOrders(
+        orderModel: OrderModel,
+        data: MutableLiveData<ApiResponseOrderModel>,
+        error: MutableLiveData<Throwable>
+    ){
+        orderRestApi.updateAdminOrders(orderModel).enqueue(object : Callback<ApiResponseOrderModel>{
+            override fun onResponse(
+                call: Call<ApiResponseOrderModel>,
+                response: Response<ApiResponseOrderModel>
+            ) {
+                if (response.body()!=null){
+                    data.value = response.body()
+
+                }
+                else{
+                    error.value = null
+
+                }
+            }
+
+            override fun onFailure(call: Call<ApiResponseOrderModel>, t: Throwable) {
+                error.value = t
+            }
+
+        })
+    }
+
     fun fetchStats(
         timeLine: String,
         data: MutableLiveData<ApiResponseStatsModel>,

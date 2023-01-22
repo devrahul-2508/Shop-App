@@ -37,7 +37,7 @@ class AdminOrdersActivity : AppCompatActivity() {
 
     private fun buildRecyclerView(){
 
-        adapter = AdminOrdersPagingAdapter(this)
+        adapter = AdminOrdersPagingAdapter(orderViewModel,this)
         binding.orderRecycler.layoutManager = LinearLayoutManager(this)
         binding.orderRecycler.adapter = adapter
         orderViewModel.fetchAdminOrders().observe(this){
