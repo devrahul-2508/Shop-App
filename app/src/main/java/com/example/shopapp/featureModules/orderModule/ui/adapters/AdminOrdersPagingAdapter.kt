@@ -9,6 +9,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.LifecycleOwner
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -118,6 +119,7 @@ class AdminOrdersPagingAdapter(private val orderViewModel: OrderViewModel,privat
                         when(statusSpinner.getItemAtPosition(p2)){
                             "Pending"->{
                                 status = "Pending"
+
                             }
                             "Order Confirmed"->{
                                 status = "Order Confirmed"
@@ -129,6 +131,8 @@ class AdminOrdersPagingAdapter(private val orderViewModel: OrderViewModel,privat
                                 status = "Delivered"
                             }
                         }
+                        item.status = status
+                        updateStatus(item)
                     }
                 }
 
@@ -160,6 +164,18 @@ class AdminOrdersPagingAdapter(private val orderViewModel: OrderViewModel,privat
 
         override fun areContentsTheSame(oldItem: OrderModel, newItem: OrderModel): Boolean {
             return oldItem == newItem
+        }
+    }
+
+    private fun updateStatus(orderModel: OrderModel){
+        orderViewModel.updateAdminOrders(orderModel).observe(context as LifecycleOwner){
+            if (it.success){
+                Toast.makeText(context,"Successfull",Toast.LENGTH_SHORT).show()
+            }
+            else{
+                Toast.makeText(context,"Failure",Toast.LENGTH_SHORT).show()
+
+            }
         }
     }
 }

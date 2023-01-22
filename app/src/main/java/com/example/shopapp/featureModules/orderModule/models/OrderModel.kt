@@ -23,7 +23,7 @@ data class OrderModel(
     val address: String?=null,
     @SerializedName("status")
     @Expose
-    val status: String?=null,
+    var status: String?=null,
     @SerializedName("modeOfPayment")
     @Expose
     val modeOfPayment: String?=null,
