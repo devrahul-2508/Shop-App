@@ -17,6 +17,9 @@ data class UserModel(
     @SerializedName("password")
     @Expose
     val password:String?=null,
+    @SerializedName("fcmToken")
+    @Expose
+    val fcmToken:String?=null,
     @SerializedName("isAdmin")
     @Expose
     val isAdmin: Boolean?=false,

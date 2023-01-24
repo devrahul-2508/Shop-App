@@ -12,12 +12,14 @@ object Constants {
     const val EMAIL="EMAIL"
     const val IS_ADMIN="IS_ADMIN"
     const val ACCESS_TOKEN = "ACCESS_TOKEN"
+    const val FCM_TOKEN = "FCM_TOKEN"
 
     const val APPLICATION_CONTEXT = "APPLICATION_CONTEXT"
 
     const val REST_API_WITH_HEADERS = "RestApiWithHeaders"
     const val REST_API_WITHOUT_HEADERS = "RestApiWithoutHeaders"
     const val BASE_URL ="https://e-commerce-api-kappa.vercel.app/"
+    const val LOCALHOST_URL = "http://192.168.29.89:3000/"
 
     object INTENT_PARAMS{
         const val PRODUCT_ID = "productid"

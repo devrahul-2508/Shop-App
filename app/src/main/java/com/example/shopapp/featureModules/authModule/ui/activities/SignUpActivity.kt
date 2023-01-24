@@ -3,6 +3,7 @@ package com.example.shopapp.featureModules.authModule.ui.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -15,6 +16,8 @@ import com.example.shopapp.featureModules.authModule.di.DaggerAuthComponent
 import com.example.shopapp.featureModules.authModule.models.UserModel
 import com.example.shopapp.featureModules.authModule.viewmodels.AuthViewModel
 import com.example.shopapp.utility.DataStoreManager
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import javax.inject.Inject
 
 class SignUpActivity : AppCompatActivity() {
@@ -22,6 +25,8 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
     lateinit var authViewModel: AuthViewModel
     private var accessToken: String ?=null
+    private val TAG = "1234"
+    private var token = ""
 
     @Inject
     lateinit var dataStoreManager: DataStoreManager
@@ -49,25 +54,49 @@ class SignUpActivity : AppCompatActivity() {
             val userName = username.text.toString()
             val email = email.text.toString()
             val password = password.text.toString()
-            val userModel = UserModel(
-                userName = userName,
-                email = email,
-                password = password
-            )
-            authViewModel.registerUser(userModel).observe(this@SignUpActivity){
-                if (it.success){
-                    accessToken = it.response?.accessToken
-                    lifecycleScope.launchWhenStarted {
-                        dataStoreManager.saveUser(it.response!!)
-                    }
-                    startActivity(Intent(this@SignUpActivity, MainActivity::class.java))
-                    finish()
 
+
+            FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+                if (!task.isSuccessful) {
+                    Log.d(TAG, "Fetching FCM registration token failed", task.exception)
+                    return@OnCompleteListener
                 }
-                else{
-                    Toast.makeText(this@SignUpActivity,it.message, Toast.LENGTH_SHORT).show()
+
+                // Get new FCM registration token
+                token = task.result
+
+                // Log and toast
+
+                Log.d(TAG, token)
+
+
+                val userModel = UserModel(
+                    userName = userName,
+                    email = email,
+                    password = password,
+                    fcmToken = token
+                )
+
+                authViewModel.registerUser(userModel).observe(this@SignUpActivity){
+                    if (it.success){
+                        accessToken = it.response?.accessToken
+                        lifecycleScope.launchWhenStarted {
+                            dataStoreManager.saveUser(it.response!!)
+                        }
+                        startActivity(Intent(this@SignUpActivity, MainActivity::class.java))
+                        finish()
+
+                    }
+                    else{
+                        Toast.makeText(this@SignUpActivity,it.message, Toast.LENGTH_SHORT).show()
+                    }
                 }
-            }
+            })
+
+
+
+
+
 
         }
 

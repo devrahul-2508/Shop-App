@@ -26,6 +26,7 @@ class DataStoreManager(val context: Context) {
         val EMAIL = stringPreferencesKey(Constants.EMAIL)
         val IS_ADMIN = booleanPreferencesKey(Constants.IS_ADMIN)
         val ACCESS_TOKEN = stringPreferencesKey(Constants.ACCESS_TOKEN)
+        val FCM_TOKEN = stringPreferencesKey(Constants.FCM_TOKEN)
 
     }
 
@@ -35,8 +36,8 @@ class DataStoreManager(val context: Context) {
                 userName = preferences[USER_NAME]?:"",
                 email = preferences[EMAIL]?:"",
                 isAdmin = preferences[IS_ADMIN]?:false,
-                accessToken = preferences[ACCESS_TOKEN] ?: ""
-
+                accessToken = preferences[ACCESS_TOKEN] ?: "",
+                fcmToken = preferences[FCM_TOKEN]
             )
         }
 
@@ -46,6 +47,7 @@ class DataStoreManager(val context: Context) {
             preferences[EMAIL] = user.email!!
             preferences[IS_ADMIN] = user.isAdmin!!
             preferences[ACCESS_TOKEN] = user.accessToken!!
+            preferences[FCM_TOKEN] =user.fcmToken!!
 
         }
     }
