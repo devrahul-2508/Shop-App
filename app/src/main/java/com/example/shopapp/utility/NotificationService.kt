@@ -5,6 +5,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationCompat.DEFAULT_SOUND
@@ -43,9 +44,9 @@ class NotificationService: FirebaseMessagingService() {
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
 
         val CHANNEL_ID = "HEADS_UP_NOTIFICATION"
-
-        val title: String? = remoteMessage.notification?.title
-        val text: String? = remoteMessage.notification?.body
+        Log.d("BAMNOTIF",remoteMessage.data.toString())
+        val title: String? = remoteMessage.data["title"]
+        val text: String? = remoteMessage.data["content"]
 
         val channel = NotificationChannel(
             CHANNEL_ID,
