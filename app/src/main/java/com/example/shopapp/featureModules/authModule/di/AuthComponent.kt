@@ -6,6 +6,7 @@ import com.example.shopapp.featureModules.authModule.ui.activities.LoginActivity
 import com.example.shopapp.featureModules.authModule.ui.activities.SignUpActivity
 import com.example.shopapp.featureModules.authModule.ui.fragments.ProfileFragment
 import com.example.shopapp.featureModules.authModule.viewmodels.AuthViewModel
+import com.example.shopapp.utility.NotificationService
 import dagger.Component
 import javax.inject.Singleton
 
@@ -16,4 +17,6 @@ interface AuthComponent {
     fun inject(authViewModel: AuthViewModel)
     fun inject(signUpActivity: SignUpActivity)
     fun inject(profileFragment: ProfileFragment)
+
+    fun inject(notificationService: NotificationService)
 }

@@ -14,9 +14,12 @@ import com.example.shopapp.R
 import com.example.shopapp.application.ShopApplication
 import com.example.shopapp.databinding.ActivityLoginBinding
 import com.example.shopapp.featureModules.authModule.di.DaggerAuthComponent
+import com.example.shopapp.featureModules.authModule.models.FcmTokenModel
 import com.example.shopapp.featureModules.authModule.models.UserModel
 import com.example.shopapp.featureModules.authModule.viewmodels.AuthViewModel
 import com.example.shopapp.utility.DataStoreManager
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.first
 import javax.inject.Inject
@@ -27,6 +30,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var authViewModel: AuthViewModel
     private var accessToken: String ?=null
     private var user:UserModel?=null
+    private val TAG = "1234"
 
     @Inject
     lateinit var dataStoreManager: DataStoreManager
@@ -55,31 +59,48 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
-    @OptIn(DelicateCoroutinesApi::class)
     private fun loginUser(){
         val email = binding.email.text.toString()
         val password = binding.password.text.toString()
 
         val userModel = UserModel(email = email, password = password)
 
-        authViewModel.loginUser(userModel).observe(this){
+        authViewModel.loginUser(userModel).observe(this){ response->
 
-            if (it.success){
+            if (response.success){
 
-              lifecycleScope.launchWhenStarted{
-                  Log.d("BAMACCAPI",it.response?.accessToken!!)
-                    dataStoreManager.saveUser(it.response)
+                FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+                    if (!task.isSuccessful) {
+                        Log.w(TAG, "Fetching FCM registration token failed", task.exception)
+                        return@OnCompleteListener
+                    }
 
+                    // Get new FCM registration token
+                    val fcmToken = task.result
 
-                  startActivity(Intent(this@LoginActivity,MainActivity::class.java))
-                  finish()
+                    val fcmTokenModel = FcmTokenModel(
+                        userId = response.response?.id,
+                        fcmToken = fcmToken
+                    )
+
+                    authViewModel.setFcmToken(fcmTokenModel).observe(this){
+                        if (it.success){
+                            lifecycleScope.launchWhenStarted{
+                                dataStoreManager.saveUser(response.response!!)
+                        }
+                            startActivity(Intent(this@LoginActivity,MainActivity::class.java))
+                            finish()
+                    }
+
                 }
+
+                })
 
 
 
             }
             else{
-                Toast.makeText(this,it.message,Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,response.message,Toast.LENGTH_SHORT).show()
             }
         }
 

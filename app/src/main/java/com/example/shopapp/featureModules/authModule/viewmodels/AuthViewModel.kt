@@ -4,6 +4,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.shopapp.featureModules.authModule.models.FcmTokenModel
 import com.example.shopapp.featureModules.authModule.models.UserModel
 import com.example.shopapp.featureModules.authModule.models.apiResponseModels.ApiResponseUserModel
 import com.example.shopapp.featureModules.authModule.repositories.AuthRepository
@@ -25,6 +26,12 @@ class AuthViewModel: ViewModel() {
     fun registerUser(userModel: UserModel): LiveData<ApiResponseUserModel>{
         val successData : MutableLiveData<ApiResponseUserModel> = MutableLiveData()
         authRepository.registerUser(userModel,successData, errorData)
+        return successData
+    }
+
+    fun setFcmToken(fcmTokenModel: FcmTokenModel): LiveData<ApiResponseUserModel>{
+        val successData : MutableLiveData<ApiResponseUserModel> = MutableLiveData()
+        authRepository.setFcmToken(fcmTokenModel,successData, errorData)
         return successData
     }
 }

@@ -7,7 +7,7 @@ object Constants {
         const val WITHOUT_HEADERS="without headers"
         const val WITH_HEADERS="with headers"
     }
-
+    const val USER_ID = "USER_ID"
     const val USER_NAME="USER_NAME"
     const val EMAIL="EMAIL"
     const val IS_ADMIN="IS_ADMIN"

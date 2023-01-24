@@ -9,11 +9,35 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationCompat.DEFAULT_SOUND
 import androidx.core.app.NotificationCompat.DEFAULT_VIBRATE
+import androidx.lifecycle.ViewModelProvider
+import com.example.shopapp.application.ShopApplication
+import com.example.shopapp.featureModules.authModule.di.DaggerAuthComponent
+import com.example.shopapp.featureModules.authModule.models.FcmTokenModel
+import com.example.shopapp.featureModules.authModule.viewmodels.AuthViewModel
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
+import javax.inject.Inject
 
 
 class NotificationService: FirebaseMessagingService() {
+
+    private lateinit var authViewModel: AuthViewModel
+
+    @Inject
+    lateinit var dataStoreManager: DataStoreManager
+
+
+    override fun onCreate() {
+        super.onCreate()
+
+        authViewModel = AuthViewModel()
+        DaggerAuthComponent.builder().appComponent((application as ShopApplication).applicationComponent()).build().also {
+            it.inject(this)
+            it.inject(authViewModel)
+        }
+    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
@@ -85,6 +109,20 @@ class NotificationService: FirebaseMessagingService() {
 //        }
 
         super.onMessageReceived(remoteMessage)
+    }
+
+    override fun onNewToken(token: String) {
+        super.onNewToken(token)
+
+        val user = runBlocking { dataStoreManager.user.first() }
+
+        val fcmTokenModel = FcmTokenModel(
+            userId = user.id,
+            fcmToken = token
+        )
+
+        authViewModel.setFcmToken(fcmTokenModel)
+
     }
 
 

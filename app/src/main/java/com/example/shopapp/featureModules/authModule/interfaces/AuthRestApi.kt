@@ -1,12 +1,10 @@
 package com.example.shopapp.featureModules.authModule.interfaces
 
+import com.example.shopapp.featureModules.authModule.models.FcmTokenModel
 import com.example.shopapp.featureModules.authModule.models.UserModel
 import com.example.shopapp.featureModules.authModule.models.apiResponseModels.ApiResponseUserModel
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface AuthRestApi {
 
@@ -15,6 +13,9 @@ interface AuthRestApi {
 
     @POST("/api/auth/register")
     fun register(@Body userModel: UserModel): Call<ApiResponseUserModel>
+
+    @PUT("/api/auth/fcmtoken")
+    fun setFcmToken(@Body fcmTokenModel: FcmTokenModel):Call<ApiResponseUserModel>
 
     /*
 

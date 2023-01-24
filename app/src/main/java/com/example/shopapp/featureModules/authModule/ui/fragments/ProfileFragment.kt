@@ -83,7 +83,7 @@ class ProfileFragment : Fragment() {
 
             logoutCardview.setOnClickListener {
                 lifecycleScope.launchWhenStarted{
-                   val user = UserModel(userName = "", email = "", accessToken = "", isAdmin = false )
+                   val user = UserModel(userName = "", email = "", accessToken = "", isAdmin = false, id = "")
                     dataStoreManager.saveUser(user)
                     requireActivity().finish()
                     startActivity(Intent(requireActivity(),LoginActivity::class.java))

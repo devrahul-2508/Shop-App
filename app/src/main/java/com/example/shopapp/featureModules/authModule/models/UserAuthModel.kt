@@ -20,6 +20,9 @@ data class UserAuthModel(
     @SerializedName("accessToken")
     @Expose
     val accessToken: String?=null,
+    @SerializedName("fcmToken")
+    @Expose
+    val fcmToken:String?=null,
     @SerializedName("createdAt")
     @Expose
     val createdAt:String?=null,

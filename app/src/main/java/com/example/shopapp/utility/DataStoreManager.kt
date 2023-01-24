@@ -22,35 +22,37 @@ class DataStoreManager(val context: Context) {
     private val dataStore = context.userPreferencesDataStore
 
     companion object {
+        val USER_ID = stringPreferencesKey(Constants.USER_ID)
         val USER_NAME = stringPreferencesKey(Constants.USER_NAME)
         val EMAIL = stringPreferencesKey(Constants.EMAIL)
         val IS_ADMIN = booleanPreferencesKey(Constants.IS_ADMIN)
         val ACCESS_TOKEN = stringPreferencesKey(Constants.ACCESS_TOKEN)
-        val FCM_TOKEN = stringPreferencesKey(Constants.FCM_TOKEN)
 
     }
 
     val user: Flow<UserModel> = dataStore.data
         .map { preferences ->
             UserModel(
+                id = preferences[USER_ID]?:"",
                 userName = preferences[USER_NAME]?:"",
                 email = preferences[EMAIL]?:"",
                 isAdmin = preferences[IS_ADMIN]?:false,
                 accessToken = preferences[ACCESS_TOKEN] ?: "",
-                fcmToken = preferences[FCM_TOKEN]
             )
         }
 
     suspend fun saveUser(user: UserModel){
         dataStore.edit { preferences->
+            preferences[USER_ID] =user.id!!
             preferences[USER_NAME] =user.userName!!
             preferences[EMAIL] = user.email!!
             preferences[IS_ADMIN] = user.isAdmin!!
             preferences[ACCESS_TOKEN] = user.accessToken!!
-            preferences[FCM_TOKEN] =user.fcmToken!!
 
         }
     }
+
+
 
 
 }

@@ -13,6 +13,7 @@ import com.example.shopapp.R
 import com.example.shopapp.application.ShopApplication
 import com.example.shopapp.databinding.ActivitySignUpBinding
 import com.example.shopapp.featureModules.authModule.di.DaggerAuthComponent
+import com.example.shopapp.featureModules.authModule.models.FcmTokenModel
 import com.example.shopapp.featureModules.authModule.models.UserModel
 import com.example.shopapp.featureModules.authModule.viewmodels.AuthViewModel
 import com.example.shopapp.utility.DataStoreManager
@@ -56,42 +57,52 @@ class SignUpActivity : AppCompatActivity() {
             val password = password.text.toString()
 
 
-            FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
-                if (!task.isSuccessful) {
-                    Log.d(TAG, "Fetching FCM registration token failed", task.exception)
-                    return@OnCompleteListener
-                }
 
-                // Get new FCM registration token
-                token = task.result
-
-                // Log and toast
-
-                Log.d(TAG, token)
 
 
                 val userModel = UserModel(
                     userName = userName,
                     email = email,
-                    password = password,
-                    fcmToken = token
+                    password = password
                 )
 
-                authViewModel.registerUser(userModel).observe(this@SignUpActivity){
-                    if (it.success){
-                        accessToken = it.response?.accessToken
-                        lifecycleScope.launchWhenStarted {
-                            dataStoreManager.saveUser(it.response!!)
-                        }
-                        startActivity(Intent(this@SignUpActivity, MainActivity::class.java))
-                        finish()
+                authViewModel.registerUser(userModel).observe(this@SignUpActivity){response->
+                    if (response.success){
+
+                        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+                            if (!task.isSuccessful) {
+                                Log.w(TAG, "Fetching FCM registration token failed", task.exception)
+                                return@OnCompleteListener
+                            }
+
+                            // Get new FCM registration token
+                            val fcmToken = task.result
+
+                            val fcmTokenModel = FcmTokenModel(
+                                userId = response.response?.id,
+                                fcmToken = fcmToken
+                            )
+
+                            authViewModel.setFcmToken(fcmTokenModel).observe(this@SignUpActivity){
+                                if (it.success){
+                                    lifecycleScope.launchWhenStarted{
+                                        dataStoreManager.saveUser(response.response!!)
+                                    }
+                                    startActivity(Intent(this@SignUpActivity,MainActivity::class.java))
+                                    finish()
+                                }
+
+                            }
+                        })
+
+
 
                     }
                     else{
-                        Toast.makeText(this@SignUpActivity,it.message, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@SignUpActivity,response.message, Toast.LENGTH_SHORT).show()
                     }
                 }
-            })
+
 
 
 
