@@ -1,5 +1,6 @@
 package com.example.shopapp.featureModules.orderModule.models
 
+import com.example.shopapp.featureModules.authModule.models.UserModel
 import com.example.shopapp.featureModules.cartModule.models.CartProductModel
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
@@ -11,7 +12,7 @@ data class OrderModel(
     val orderId: String?=null,
     @SerializedName("userId")
     @Expose
-    val userId: String?=null,
+    val userId: UserModel?=null,
     @SerializedName("products")
     @Expose
     val products: List<OrderProductModel>,

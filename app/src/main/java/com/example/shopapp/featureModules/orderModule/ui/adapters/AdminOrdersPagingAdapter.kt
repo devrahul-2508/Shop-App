@@ -37,6 +37,8 @@ class AdminOrdersPagingAdapter(private val orderViewModel: OrderViewModel,privat
             orderId.text = "Order ID:\n" + item?.orderId
             orderPrice.text = "$" + item?.amount.toString()
 
+            username.text = item?.userId?.userName
+
             Glide.with(context).load(item!!.products[0].img).into(img1)
             Glide.with(context).load(item!!.products[1].img).into(img2)
             holder.itemView.setOnClickListener {

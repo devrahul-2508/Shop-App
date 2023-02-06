@@ -33,6 +33,7 @@
             android:background="@drawable/round_corners"
             android:layout_marginTop="20dp"
             android:layout_marginHorizontal="20dp"
+            android:inputType="textPassword"
             android:textSize="20sp"
             android:padding="15dp"
             android:drawablePadding="5dp"/>
