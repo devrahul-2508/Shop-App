@@ -54,6 +54,18 @@
                 android:layout_marginTop="25dp"
                 android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="3dp"
+                    android:fontFamily="@font/poppins"
+                    android:maxLines="2"
+                    android:text="Rahul"
+                    android:textColor="@color/deepblue"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
 
 
                 <TextView
@@ -67,6 +79,8 @@
                     android:textColor="@color/deepblue"
                     android:textSize="14sp"
                     android:textStyle="bold" />
+
+
 
 
                 <TextView
